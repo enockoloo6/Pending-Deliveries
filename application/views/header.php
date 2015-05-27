@@ -71,7 +71,9 @@
       <div class= "modal fade" id="SupplyAgencyRegistration" role"dialog">
       <div class= "modal-dialog">
         <div class= "modal-content">
-          <form class= "form-horizontal"  name="reg" action="sign-up.php" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">  
+      
+       <form class="form-horizontal" role="form" name="reg" action="<?= base_url();?>index.php/deliveriesdefault/save" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">
+          <!--<form class= "form-horizontal"  name="reg" action="sign-up.php" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">-->  
             <div class= "modal-header">
               <h4 class= "position" >Add a supply chain agency</h4>              
               <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>X</b></div>  

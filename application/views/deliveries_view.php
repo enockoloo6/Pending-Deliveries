@@ -62,26 +62,7 @@
         </div>       
 
       </div>
-    </div><!--this is the end of the top navbar--> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div><!--this is the end of the top navbar-->
 
 
 
@@ -100,21 +81,29 @@
 
         
               </div>
+
+
+
+              <?Php //foreach($records as $row) : 
+
+              //echo '<button button-danger>'.$row->fname. " ".$row->mname." ".$row->sname. '</button>';
               
+              //endforeach;
+
+              ?>  
+
+
+
             <!--  <p> the body section/p>
              <a href="#" class= "btn btn-danger">SEE ALL</a>-->
             </div>
 
           </div>
 
-        </div>     
-        
+        </div> 
 
-
-
-            
-          </div>    
-      </div>
+     </div>    
+    </div>
 
      
   

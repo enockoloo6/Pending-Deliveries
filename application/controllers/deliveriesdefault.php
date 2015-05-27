@@ -1,28 +1,48 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class deliveriesdefault extends CI_Controller {
+class Deliveriesdefault extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
+
+
+	function __construct()
+    {
+       parent::__construct();
+       $this->load->model('agenciesmodel');
+     
+    }
+
 	public function index()
 	{
-		$this->load->view('deliveries_view');
-		//$this->load->view('welcome_message');
-	}
-}
+		$this->load->view('deliveries_view');	
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+	}
+
+
+	public function save(){
+		$agency_name= ($this->input->post('supply_agency_name'));
+		$person= ($this->input->post('contact_person'));
+		$contact= ($this->input->post('contact_phone'));
+		$phone= ($this->input->post('supply_chain_description'));
+
+
+		$agency = array(
+			'SUPPLY_CHAIN_AGENCY' => $agency_name,
+			'CONTACT_PERSON' => $person,
+			'CONTACT_PHONE' => $contact,
+			'COMMENT' => $phone
+		);
+       
+		$employeeId = $this->agenciesmodel->addagency($agency);
+		$data['message'] =  "";
+		if($employeeId){
+			$data['message'] =  "Employee Saved Successfully!..";
+		}
+		// $query = $this->HomeModel->getEmployee();
+
+		// if($query){
+		// 	$data['EMPLOYEES'] =  $query;
+		// }
+		// $this->load->view('result.php', $data);
+	}
+
+}
