@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "Deliveriesdefault";
+$route['default_controller'] = "AgencyHome";
 $route['404_override'] = '';
 
 

@@ -1,169 +1,73 @@
+<?php require_once('forms.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head> 
  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
   
-    <script type="text/javascript">
-
-     function validateFundingAgency()
-     {
-      
-      var x=document.forms["FundingArgencyName"]["funding_agency_name"].value;
-      var y=document.forms["FundingArgencyName"]["funding_agency_description"].value;
-
-        if ((x==null || x=="") && (y==null || y==""))
-         {
-          alert("All Field must be filled out");
-          return false;
-         }
-        if (x==null || x=="")
-         {
-          alert("Input the funding agency name");
-          return false;
-         }
-        if (y==null || y=="")
-         {
-          alert("Include decription");
-          return false;
-         }
-     }
-    </script>
-    <!--this is a script for validating the input in to the registration form-->
-    <script type="text/javascript">
-
-    function validateSupplyAgency()
-    {
-    var a=document.forms["reg"]["supply_agency_name"].value;
-    var b=document.forms["reg"]["contact_person"].value;
-    var c=document.forms["reg"]["contact_phone"].value;
-    var d=document.forms["reg"]["supply_chain_description"].value;
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--link the html code to the bootstrap-->
+    <link href="<?= base_url();?>bootstrap/css/styles.css" rel="stylesheet" type="text/css">
 
 
+    <!--DATATABLE-->
+    <link  href="<?= base_url();?>DataTables-1.10.7/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.js"></script>  
+    <!-- DataTables -->
+    <script type="text/javascript"  charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+    <!--DATA TABLE-->
     
-    if ((a==null || a=="") && (b==null || b=="") && (c==null || c=="") && (d==null || d==""))
-    {
-    alert("All Field must be filled out");
-    return false;
-    }
-    if (a==null || a=="")
-    {
-    alert("Please include the name of the supply agency");
-    return false;
-    }
-    if (b==null || b=="")
-    {
-    alert("Please inlude the contact person");
-    return false;
-    }
-    if (c==null || c=="")
-    {
-    alert("Please include the contact phone");
-    return false;
-    }
-    if (d==null || d=="")
-    {
-    alert("Please include the description");
-    return false;
-    }   
-    }
-    </script>
- 
 
-<!-- c------------------------------------------------d----------f-----------d-----------------f--------------------------------------------------------------c  -->
    
-      <div class= "modal fade" id="SupplyAgencyRegistration" role"dialog">
-      <div class= "modal-dialog">
-        <div class= "modal-content">
-      
-       <form class="form-horizontal" role="form" name="reg" action="<?= base_url();?>index.php/deliveriesdefault/save" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">
-          <!--<form class= "form-horizontal"  name="reg" action="sign-up.php" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">-->  
-            <div class= "modal-header">
-              <h4 class= "position" >Add a supply chain agency</h4>              
-              <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>X</b></div>  
-            </div>
-    
+  </head>
+  <body>  
 
-            <div class= "modal-body">
+   
+   <div style= "background-color:#276696"  class="navbar navbar-inverse navbar-static-top">
 
-              <div class= "form-group">
-                <label for="contact-name" class="col-lg-4 control-label">Agency Name: </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="supply_agency_name" placeholder="Supply agency name"> <!--the form-control gives the form some styling-->
-                </div>
-              </div>
+      <div class="container"><!--this contains the everything to be place in the navbar-->
+        
+        <button class= "navbar-toggle" data-toggle = "collapse" data-target = "#navHeaderCollapse">
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>  
+          <span class="icon-bar"></span>   
 
-               <div class= "form-group">
-                <label for="contact-name" class="col-lg-4 control-label">Contact person: </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="contact_person" placeholder="Contact person"> <!--the form-control gives the form some styling-->
-                </div>
-              </div>
+        </button>
 
-               <div class= "form-group">
-                <label for="contact-name" class="col-lg-4 control-label">Contact Phone </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="contact_phone" placeholder="Contact phone"> <!--the form-control gives the form some styling-->
-                </div>
-              </div>
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
 
-               <div class "form-group">
-                <label for="contact-msg" class="col-lg-4 control-label"> Description: </label>
-                <div class= "col-lg-8">
-                  <textarea class="form-control" rows="8" name="supply_chain_description" placeholder="Add description"></textarea>                
-                </div>                
-              </div> 
+          <ul class="nav navbar-nav navbar-right">
 
+            <li class="active"><a href="<?= base_url();?>">Home</a></li><!--this is the general outlook of the site by everyone-->
+          
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supply Chain Agencies<b class="caret"></b> </a>
+              <ul class= "dropdown-menu">              
+                <li><a href="#SupplyAgencyRegistration" data-toggle="modal">Add</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_agency_id">View</a></li>
+              </ul>
+            </li>  
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funding Agencies<b class="caret"></b> </a>
+              <ul class= "dropdown-menu">              
+                <li><a href="#FundingAgencyrRegistration" data-toggle="modal">Add</a></li>
+                <li><a href="#">View</a></li>
+              </ul>
+            </li>  
 
                
-            </div> <!--end of the modal body-->
 
-            <div class="modal-footer">
-              <button class = "btn btn-primary" type="submit">Submit</button>
-              <a class="btn btn-danger" data-dismiss = "modal">Close</a>                  
-            </div>
+          </ul>
 
-          </form>
-        </div>
+        </div>       
+
       </div>
-    </div>
-    
-<!--  ----------------------------------------------------------------------------------------------------------------------------------------------------------     -->
-
-
-
-      <div class= "modal fade" id="FundingAgencyrRegistration" role"dialog">
-      <div class= "modal-dialog">
-        <div class= "modal-content">
-          <form class= "form-horizontal"  name="FundingArgencyName" action="sign-up.php" onsubmit="return validateFundingAgency()" method="post" enctype="multipart/form-data" autocomplete="on">  
-            <div class= "modal-header">
-              <h4 class= "position" >Add a funding Agency</h4>              
-              <div class= "position_data_dismis_sign" data-dismiss = "modal"><b>X</b></div>  
-            </div>
-    
-
-            <div class= "modal-body">
-
-              <div class= "form-group">
-                <label for="contact-name" class="col-lg-4 control-label">Funding Agency Name: </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="funding_agency_name" placeholder="Funding agency name"> <!--the form-control gives the form some styling-->
-                </div>
-              </div>
-
-
-               <div class "form-group">
-                <label for="contact-msg" class="col-lg-4 control-label"> Description: </label>
-                <div class= "col-lg-8">
-                  <textarea class="form-control" rows="8" name="funding_agency_description" placeholder="Add description"></textarea>                
-                </div>                
-              </div>  
-
-                              
-            </div> <!--end of the modal body-->
-
-            <div class="modal-footer">
-              <button class = "btn btn-primary" type="submit">Submit</button>
-              <a class="btn btn-danger" data-dismiss = "modal">Close</a>                  
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
+    </div><!--this is the end of the top navbar-->
