@@ -1,9 +1,10 @@
-<?php require_once('forms.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
- 
+  <head>
     <meta charset="utf-8">
+    
+    <meta name="generator" content="CoffeeCup Image Mapper">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
@@ -11,18 +12,22 @@
   
     <link href="<?= base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--link the html code to the bootstrap-->
     <link href="<?= base_url();?>bootstrap/css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="<?= base_url();?>stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <!-- DATEPICKER -->
 
-
-    <!--DATATABLE-->
-    <link  href="<?= base_url();?>DataTables-1.10.7/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
-    <!-- jQuery -->
-    <script type="text/javascript" charset="utf8" src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.js"></script>  
-    <!-- DataTables -->
-    <script type="text/javascript"  charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
-    <!--DATA TABLE-->
+    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/jquery-uienoc.css" rel="stylesheet">
     
 
+
+
+  </script>
+
+  <style>
+  .datepicker{z-index: 1151px, !important}
+  </style>
+  
    
   </head>
   <body>  
@@ -44,25 +49,45 @@
           <ul class="nav navbar-nav navbar-right">
 
             <li class="active"><a href="<?= base_url();?>">Home</a></li><!--this is the general outlook of the site by everyone-->
-          
+                    
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supply Chain Agencies<b class="caret"></b> </a>
+
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setup<b class="caret"></b> </a>
               <ul class= "dropdown-menu">              
-                <li><a href="#SupplyAgencyRegistration" data-toggle="modal">Add</a></li>
-                <li><a href="<?= base_url();?>index.php/update_ctrl/show_agency_id">View</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/showFundingAgency" >Funding Aggency</a></li>
+
+
+            
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_agency_id" >Supply Chain Agencies</a></li>
+       
+                <li><a href="#">Zones</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_county_id">Counties</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/showStaticParams">Static Parameters</a></li>
               </ul>
             </li>  
 
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funding Agencies<b class="caret"></b> </a>
+
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transactions<b class="caret"></b> </a>
               <ul class= "dropdown-menu">              
-                <li><a href="#FundingAgencyrRegistration" data-toggle="modal">Add</a></li>
-                <li><a href="#">View</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_pending_stocks" >Add Transactions</a></li>
+                <li><a href="#">View Transactions</a></li>
               </ul>
             </li>  
 
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports<b class="caret"></b> </a>
+              <ul class= "dropdown-menu">              
+                <li><a href="#" >Central</a></li>
+                <li><a href="#">County</a></li>
+                <li><a href="#">Commodities</a></li>
+                <li><a href="#">Period</a></li>
+              </ul>
+            </li> 
                
 
           </ul>
@@ -71,3 +96,19 @@
 
       </div>
     </div><!--this is the end of the top navbar-->
+
+<!-- BODY CONTAINER-->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <!--HEADER-->
+<!--               <div class="page-header"> 
+                
+        
+              </div> -->
+              <!-- BODY CONTAINER-->
+
+
+              <?php require_once('forms.php'); ?>

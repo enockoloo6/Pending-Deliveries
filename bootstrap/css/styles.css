@@ -20,11 +20,11 @@
 /*width:722px;*/
 width:822px;
 height:610px;
-margin:30px auto
+margin:-20px auto
 }
 #wrapper {
 /*width:520px;*/
-width:720px;
+width:800px;
 padding:0 50px 20px;
 /*background:linear-gradient(#fff,#AFEBD8);*/
 background:#fff;
@@ -36,12 +36,12 @@ margin-top:10px
 }
 #menu {
 float:left;
-width:200px;
+width:270px;
 margin-top:-30px
 }
 #detail {
 float:right;
-width:320px;
+width:360px;
 margin-top:-27px
 }
 a {
@@ -61,14 +61,14 @@ font-size:28px
 hr {
 border:0;
 border-bottom:1.5px solid #ccc;
-margin-top:-10px;
-margin-bottom:30px
+margin-top:-12px;
+margin-bottom:25px
 }
 #hide {
 display:none
 }
 form {
-margin-top:-10px
+margin-top:10px
 }
 label {
 font-size:17px
@@ -96,7 +96,8 @@ background:linear-gradient(#36caf0 5%,#22abe9 100%)
 p {
 font-size:18px;
 font-weight:700;
-color:#18af0b
+color: #276696;
+/*color:#18af0b*/
 }
 /*end of form edit*/
 /*custom delete button*/
@@ -118,6 +119,15 @@ background:linear-gradient(red 5%,red 100%);
 }
 /*custom delete button*/
 
+/*automatic dropdown in navbar*/
+@media (min-width: 768px) {
+	.dropdown:hover .dropdown-menu {
+		display: block;
+	}
+}
 
 
+.clsDatePicker {
+    z-index: 100000;
+}
 
