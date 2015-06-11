@@ -84,8 +84,14 @@
           </script>            
            <?php }?>
 
+          <?php if(isset($successfull_save)){?> 
+          <script type="text/javascript"> 
+           $(document).ready(function(){
+           $('#CommodityRegistration').modal('show');
+           });
+          </script>            
+           <?php }?>
 
-
-
+           
            <?php require_once('footer.php'); ?>      
              

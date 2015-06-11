@@ -2,15 +2,13 @@
 
 <?php require_once('header.php'); ?>
 
-<div id="container">
-<div id="wrapper">
+
 <h1>Add or Edit Agencies Data</h1><hr/>
-<div id="menu">
 
 
+<div class="col-lg-6">
 <p>Click On the Agency you want to Edit</p>
 <!-- Fetching Names Of All Agencies From Database -->
-
 <table id= "entrydata"  class="table table-striped  table-hover">
     <thead>
        <tr class="bg-primary">
@@ -42,7 +40,7 @@
 <a href="#SupplyAgencyRegistration" data-toggle="modal"><div class="btn btn-success"><h5>Add a new Agency</h5></div></a>
 
 </div>
-<div id="detail">
+<div class="col-lg-6">
 <!-- Fetching All Details of Selected agency From Database And Showing In a Form -->
 <?php foreach ($single_agency as $agency): ?>
 <p>Edit Detail & Click Update Button</p>
@@ -72,14 +70,7 @@
 
 <?php endforeach; ?>
 
-
-
-
 </div>
-</div>
-</div>
-<!--</body>
-</html>-->
 
 
 

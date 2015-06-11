@@ -24,20 +24,20 @@ $(document).ready(function(){
   });
 });
 
- $('#expected_date_delivery').datepicker({
-     dateFormat: 'dd-mm-yy',
-     minDate: '+5d',
-     changeMonth: true,
-     changeYear: true,
-     // altField: "#idTourDateDetailsHidden",
-     // altFormat: "yy-mm-dd"
- });
+ // $('#expected_date_delivery').datepicker({
+ //     dateFormat: 'dd-mm-yy',
+ //     minDate: '+5d',
+ //     changeMonth: true,
+ //     changeYear: true,
+ //     // altField: "#idTourDateDetailsHidden",
+ //     // altFormat: "yy-mm-dd"
+ // });
 
- $('#idTourDateDetails').datepicker({
-     dateFormat: 'dd-mm-yy',
-     minDate: '+5d',
-     changeMonth: true,
-     changeYear: true,
-     altField: "#idTourDateDetailsHidden",
-     altFormat: "yy-mm-dd"
- });
+ // $('#idTourDateDetails').datepicker({
+ //     dateFormat: 'dd-mm-yy',
+ //     minDate: '+5d',
+ //     changeMonth: true,
+ //     changeYear: true,
+ //     altField: "#idTourDateDetailsHidden",
+ //     altFormat: "yy-mm-dd"
+ // });

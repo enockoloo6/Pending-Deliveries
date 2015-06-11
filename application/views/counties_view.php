@@ -59,9 +59,9 @@
 <label>Zone :</label>
           <select name="zone_name" class="form-control">
 
-          <!-- <option name="zone_name"><?php echo $county->zone?></option>   -->
+          <!-- <option name="zone_name"><?php //echo $county->zone?></option>   -->
           <?php foreach ($zones as $zone_name):?>
-          <option name="zone_name" <<?php if($zone_name->zone==$county->zone){echo "selected";} ?>  ><?php echo $zone_name->zone;?></option>
+          <option name="zone_name" <?php if($zone_name->zone==$county->zone){echo"selected";} ?>><?php echo $zone_name->zone;?></option>
           <?php endforeach; ?>          
 
            </select>

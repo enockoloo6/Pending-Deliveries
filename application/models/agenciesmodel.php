@@ -26,21 +26,21 @@ class agenciesmodel extends CI_Model
 
 
 	//update model functions
-		/***************************************************************************************************************
-		*	COUNTY RECORDS                                                                                             *
-		*
-		***************************************************************************************************************/
+/***************************************************************************************************************
+*		SUPPLY CHAIN AGENCY FUNCTIONS                                                                          *
+*
+***************************************************************************************************************/
+    
 
 
-
-		// Function To Fetch All Students Record
-	function show_students(){
+		// Function To Fetch All Supply chain Agency Record
+	function show_supply_chain_agencies(){
 	$query = $this->db->get('supply_chain_agency');
 	$query_result = $query->result();
 	return $query_result;
 	}
-	// Function To Fetch Selected Student Record
-	function show_student_id($data){
+	// Function To Fetch Selected Supply Chain Agency Record
+	function show_supply_chain_agency_id($data){
 	$this->db->select('*');
 	$this->db->from('supply_chain_agency');
 	$this->db->where('supply_chain_agency_id', $data);
@@ -49,9 +49,20 @@ class agenciesmodel extends CI_Model
 	return $result;
 	}
 // Update Query For Selected Student
-	function update_student_id1($id,$data){
+	function update_supply_chain_agency_id1($id,$data){
 	    $this->db->where('supply_chain_agency_id', $id);
 	    $this->db->update('supply_chain_agency', $data);
+	}
+
+
+	// GET THE SUPPLY AGENCY WITH NAME SAME AS THE NAME IN COMMODITY
+	function get_sagency_id_with_the_given_name($datas){
+	$this->db->select('supply_chain_agency_id');
+	$this->db->from('supply_chain_agency');
+	$this->db->where('supply_chain_agency', $datas);
+	$query = $this->db->get();
+	$result = $query->row()->supply_chain_agency_id;
+	return $result;
 	}
 
 
@@ -90,164 +101,213 @@ class agenciesmodel extends CI_Model
     *****************************************************************************************************/					
 
 
-					function show_fundingorgs(){
-					$query = $this->db->get('funding_agencies');
-					$query_result = $query->result();
-					return $query_result;
-					}
-					// Function To Fetch Selected Student Record
-					function show_fundingOrg_id($dataf){
-					$this->db->select('*');
-					$this->db->from('funding_agencies');
-					$this->db->where('funding_agency_id', $dataf);
-					$query = $this->db->get();
-					$result = $query->result();
-					return $result;
-					}
+	function show_fundingorgs(){
+	$query = $this->db->get('funding_agencies');
+	$query_result = $query->result();
+	return $query_result;
+	}
+	// Function To Fetch Selected Student Record
+	function show_fundingOrg_id($dataf){
+	$this->db->select('*');
+	$this->db->from('funding_agencies');
+	$this->db->where('funding_agency_id', $dataf);
+	$query = $this->db->get();
+	$result = $query->result();
+	return $result;
+	}
 
-					function addfundingAgency($fagency=NULL){		
-					$this->db->insert('funding_agencies', $fagency);
-					return $this->db->insert_id();						
-				    }
+	function addfundingAgency($fagency=NULL){		
+	$this->db->insert('funding_agencies', $fagency);
+	return $this->db->insert_id();						
+    }
 
-					function getfundigAgency(){	
-					$this->db->select('*');
-					//$this->db->order_by("SUPPLY_CHAIN_AGENCY_ID", "asc");
-					$this->db->from('funding_agencies');				
-					$query = $this->db->get();		
-					return $query->result();			
-				    }
-
-
-						function update_funding_agency($fid,$fdata){
-					    $this->db->where('funding_agency_id', $fid);
-					    $this->db->update('funding_agencies', $fdata);
-					}
-    /*****************************************************************************************************
-    *                         Static parameters Functions                                                *
-    *                                                                                                    *
-    *****************************************************************************************************/
+	function getfundigAgency(){	
+	$this->db->select('*');	
+	$this->db->from('funding_agencies');				
+	$query = $this->db->get();		
+	return $query->result();			
+    }
 
 
+		function update_funding_agency($fid,$fdata){
+	    $this->db->where('funding_agency_id', $fid);
+	    $this->db->update('funding_agencies', $fdata);
+	}
+	// GET THE FUNDING AGENCY WITH NAME SAME AS THE NAME IN COMMODITY
 
-					function showStaticParams(){
-					$query = $this->db->get('static_parameters');
-					$query_result = $query->result();
-					return $query_result;
-					}
-
-					function show_staticparams_id($datasp){
-					$this->db->select('*');
-					$this->db->from('static_parameters');
-					$this->db->where('staticparameterid', $datasp);
-					$query = $this->db->get();
-					$result = $query->result();
-					return $result;
-					}
-
-			        function addstaticparam($sp=NULL){	
-				    $this->db->insert('static_parameters', $sp);
-				    return $this->db->insert_id();						
-					}
-
-					function update_static_id1($id,$data){
-				    $this->db->where('staticparameterid', $id);
-				    $this->db->update('static_parameters', $data);
-				    }
-
-
-    /*****************************************************************************************************
-    *                        Pending Stocks Functions                                                    *
-    *                                                                                                    *
-    *****************************************************************************************************/
-
-				function showPendingStock(){
-				$query = $this->db->get('central_level_pending_stock');
-				$query_result = $query->result();
-				return $query_result;
-				}
-				function showPendingStock_id($psdata){
-				$this->db->select('*');
-				$this->db->from('central_level_pending_stock');
-				$this->db->where('pendingstocksId', $psdata);
-				$query = $this->db->get();
-				$result = $query->result();
-				return $result;
-				}
-
-
-				function update_pending_delivery($psid,$pendingdata){
-				$this->db->where('pendingstocksId', $psid);
-				$this->db->update('central_level_pending_stock', $pendingdata);
-				}
-
-				function addPendingStock($pending=NULL){	
-				$this->db->insert('central_level_pending_stock', $pending);
-				return $this->db->insert_id();	
-				}					
-
-
-				function getPendingStock(){	
-				$this->db->select('*');
-				$this->db->from('central_level_pending_stock');				
-				$query = $this->db->get();		
-				return $query->result();			
-			    }
+	function getfundingagencyid($dataf){
+	$this->db->select('funding_agency_id');
+	$this->db->from('funding_agencies');
+	$this->db->where('funding_agency_name', $dataf);
+	$query = $this->db->get();
+	$result = $query->row()->funding_agency_id;
+	return $result;
+	}
 
 
 
+/*****************************************************************************************************
+*                         Static parameters Functions                                                *
+*                                                                                                    *
+*****************************************************************************************************/
 
 
+
+	function showStaticParams(){
+	$query = $this->db->get('static_parameters');
+	$query_result = $query->result();
+	return $query_result;
+	}
+
+	function show_staticparams_id($datasp){
+	$this->db->select('*');
+	$this->db->from('static_parameters');
+	$this->db->where('staticparameterid', $datasp);
+	$query = $this->db->get();
+	$result = $query->result();
+	return $result;
+	}
+
+    function addstaticparam($sp=NULL){	
+    $this->db->insert('static_parameters', $sp);
+    return $this->db->insert_id();						
+	}
+
+	function update_static_id1($id,$data){
+    $this->db->where('staticparameterid', $id);
+    $this->db->update('static_parameters', $data);
+    }
+
+
+/*****************************************************************************************************
+*                        Pending Stocks Functions                                                    *
+*                                                                                                    *
+*****************************************************************************************************/
+
+	function showPendingStock(){
+	$query = $this->db->get('central_level_pending_stock');
+	$query_result = $query->result();
+	return $query_result;
+	}
+	function showPendingStock_id($psdata){
+	$this->db->select('*');
+	$this->db->from('central_level_pending_stock');
+	$this->db->where('pendingstocksId', $psdata);
+	$query = $this->db->get();
+	$result = $query->result();
+	return $result;
+	}
+
+
+	function update_pending_delivery($psid,$pendingdata){
+	$this->db->where('pendingstocksId', $psid);
+	$this->db->update('central_level_pending_stock', $pendingdata);
+	}
+
+	function addPendingStock($pending=NULL){	
+	$this->db->insert('central_level_pending_stock', $pending);
+	return $this->db->insert_id();	
+	}					
+
+
+	function getPendingStock(){	
+	$this->db->select('*');
+	$this->db->from('central_level_pending_stock');				
+	$query = $this->db->get();		
+	return $query->result();			
+	}
+
+	/*****************************************************************************************************
+	*                        Central level Stock Functions                                               *
+	*                                                                                                    *
+	*****************************************************************************************************/
+		function update_central_data($cdid,$cdData){
+	$this->db->where('central_level_stock_id', $cdid);
+	$this->db->update('central_level_soh', $cdData);
+	}
+
+	function addCentralStock($central_data=NULL){	
+	$this->db->insert('central_level_soh', $central_data);
+	return $this->db->insert_id();						
+	}
+
+
+	function getCentralStock(){	
+	$this->db->select('*');
+	$this->db->from('central_level_soh');				
+	$query = $this->db->get();		
+	return $query->result();			
+	}
+
+
+
+	function showCentralStock(){
+	$query = $this->db->get('central_level_soh');
+	$query_result = $query->result();
+	return $query_result;
+
+	}
+	function showCentralStock_id($psdata){
+	$this->db->select('*');
+	$this->db->from('central_level_soh');
+	$this->db->where('central_level_stock_id', $psdata);
+	$query = $this->db->get();
+	$result = $query->result();
+	return $result;
+	}
+
+
+
+	/*****************************************************************************************************
+	*                                 Commodities Functions                                              *
+	*                                                                                                    *
+	*****************************************************************************************************/
+
+	// GET THE COMMODITY WITH NAME SAME AS THE NAME IN CENTRAL DATA
+	function get_commodity_id_with_the_given_name($comm_name){
+	$this->db->select('commodity_id');
+	$this->db->from('commodities');
+	$this->db->where('commodity_name', $comm_name);
+	$query = $this->db->get();
+	$result = $query->row()->commodity_id;
+	return $result;
+	}
+
+	// Function To Fetch All Commodies Record
+	function show_commodities(){
+	$query = $this->db->get('commodities');
+	$query_result = $query->result();
+	return $query_result;
+	}
+	// Function To Fetch Selected Student Record
+	function show_commodities_id($data){
+	$this->db->select('*');
+	$this->db->from('commodities');
+	$this->db->where('commodity_id', $data);
+	$query = $this->db->get();
+	$result = $query->result();
+	return $result;
+	}
+
+	// Update Query For Selected Student
+	function update_commodity_id($id,$data){
+	    $this->db->where('commodity_id', $id);
+	    $this->db->update('commodities', $data);
+	}
+
+
+	function addcommodity($commodity=NULL){		
+	$this->db->insert('commodities', $commodity);
+	return $this->db->insert_id();						
+	}
+
+	function getCommodity(){	
+		$this->db->select('*');
+		$this->db->from('commodities');				
+		$query = $this->db->get();		
+		return $query->result();			
+	}
 
 
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

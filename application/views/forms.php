@@ -72,7 +72,7 @@
       <div class= "modal-dialog">
         <div class= "modal-content">
       
-       <form class="form-horizontal" role="form" name="reg" action="<?= base_url();?>index.php/agencyhomecontroller/save" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">
+       <form class="form-horizontal" role="form" name="reg" action="<?= base_url();?>index.php/agencyhomecontroller/save_supply_chain_agency" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">
           <!--<form class= "form-horizontal"  name="reg" action="sign-up.php" onsubmit="return validateSupplyAgency()" method="post" enctype="multipart/form-data" autocomplete="on">-->  
             <div class= "modal-header">
               <h4 class= "position" >Add a supply chain agency</h4>              
@@ -133,8 +133,6 @@
     
 <!--  -----------------------------------------Funding Agency Form---------------------------------------------------------------------------------------------------------------     -->
 
-
-
       <div class= "modal fade" id="FundingAgencyRegistration" role"dialog">
       <div class= "modal-dialog">
         <div class= "modal-content">
@@ -180,21 +178,8 @@
         </div>
       </div>
     </div>
+
     <!-------------------------------------------Pending Stock form-------------------------------------------------------->
-
-
-
-
-    <script type="text/javascript">
-    //load datepicker control onfocus
-    $(function() {
-        $("#deliverydate").datepicker();
-    });
-    </script>
-
-
-
-
 <div class= "modal fade" id="PendingStock" role"dialog">
       <div class= "modal-dialog">
         <div class= "modal-content">
@@ -259,7 +244,7 @@
 
 
 
-                    <label for="idTourDateDetails" class="col-lg-5 control-label">Tour Start Date:</label>
+<!--                     <label for="idTourDateDetails" class="col-lg-5 control-label">Tour Start Date:</label>
                         <div class="form-group col-lg-7">
                             <div class="input-group">
                                 <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
@@ -270,7 +255,7 @@
                         <div class= "col-lg-7">
                         <input type="text" name="idTourDateDetailsHidden" id="idTourDateDetailsHidden">
                         </div>
-       
+        -->
 
 
                <div class "form-group">
@@ -361,6 +346,193 @@
          
 
 
+
+        </div>
+      </div>
+    </div>
+
+<!-- -----------------------------------Central level data---------------------------------------------------------------- -->
+
+<div class= "modal fade" id="CentralLevelData" role"dialog">
+      <div class= "modal-dialog">
+        <div class= "modal-content">
+          <form class= "form-horizontal"  name="StaticParams" action="<?= base_url();?>index.php/agencyhomecontroller/saveCentralData" onsubmit="return validateStaticrams()" method="post" enctype="multipart/form-data" autocomplete="on">  
+            <div class= "modal-header"> 
+
+              <h4 class= "position" >Adjust Current Stocks</h4> 
+              <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>X</b></div>              
+              </div> 
+
+            <div class= "modal-body">
+
+              
+                <label for="commodity_name" class="col-lg-4 control-label">Commodity Name: </label>
+                <div class= "col-lg-8">
+                  <select name="commodity_name" class="form-control">            
+                    <?php foreach ($commodities as $commodity):?>
+                     <option name="commodity_name"><?php echo $commodity->commodity_name;?></option>
+                    <?php endforeach; ?> 
+                  </select>
+                </div>
+            
+
+              <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Pack Size: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="pack_size" placeholder="Pack Size">
+                </div>                
+              </div> 
+
+
+              <label for="supply_chain_agency" class="col-lg-4 control-label">Supply Agency: </label>
+                <div class= "col-lg-8">
+                  <select name="supply_chain_agency" class="form-control">            
+                    <?php foreach ($supply_chain_agencies as $supply):?>
+                     <option name="supply_chain_agency"><?php echo $supply->supply_chain_agency;?></option>
+                    <?php endforeach; ?> 
+                  </select>
+                </div> 
+
+
+               <label for="funding_agency" class="col-lg-4 control-label">Funding Agency: </label>
+                <div class= "col-lg-8">
+                  <select name="funding_agency" class="form-control"> 
+                  <?php foreach ($fundingagencies as $agency): ?>                     
+                     <option name="funding_agency"><?php echo $agency->funding_agency_name;?></option>
+                  <?php endforeach; ?>
+                  </select>
+                </div> 
+
+                 <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Supplier Receipts: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="receipts_from_suppliers" placeholder=" Supplier Receipts">
+                </div>                
+              </div>  
+          
+              
+
+             
+
+             
+
+                <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label">Opening Balance: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="opening_balance" placeholder="Opening Balance">
+                              
+                </div>                
+              </div>
+
+
+                 <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Total Issues: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="total_issues" placeholder="Total Issues">
+                 </div>                
+              </div>  
+
+                   <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Closing Balance: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="closing_balance" placeholder="Closing Balance">
+                 </div>                
+              </div> 
+
+                   <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Earliest Expiry: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="earliest_expiry_date" placeholder="Earliest Expiry Date">
+                 </div>                
+              </div> 
+
+
+              <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Quantity Expiring: </label>
+                 <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="quantity_expiring" placeholder="Quantity Expiring">
+                 </div>                
+              </div> 
+
+
+           </div> <!--end of the modal body-->
+           
+            <div class="modal-footer">
+              <button class = "btn btn-primary" type="submit">Submit</button>
+              <a class="btn btn-danger" data-dismiss = "modal">Close</a>                  
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+
+
+        <!---------------------------------Commodity registration------------------------------------------------------>
+
+    <div class= "modal fade" id="CommodityRegistration" role"dialog">
+      <div class= "modal-dialog">
+        <div class= "modal-content">
+          <form class= "form-horizontal"  name="val" action="<?= base_url();?>index.php/agencyhomecontroller/saveCommodity" onsubmit="return validateCommodity()" method="post" enctype="multipart/form-data" autocomplete="on">  
+            <div class= "modal-header"> 
+
+              <h4 class= "position" >Add a Commodity</h4> 
+              <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>X</b></div>              
+               
+            </div>   
+
+            <div class= "modal-body">
+
+              <div class= "form-group">
+                <label for="contact-name" class="col-lg-4 control-label">Commodity Name: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="commodity_name" placeholder="commodity name"> <!--the form-control gives the form some styling-->
+                </div>
+              </div>
+
+              <div class= "form-group">
+                <label for="contact-name" class="col-lg-4 control-label">Commodity Pack Size: </label>
+                <div class= "col-lg-8">
+                  <input type="text" class="form-control" name="pack_size" placeholder="pack size"> <!--the form-control gives the form some styling-->
+                </div>
+              </div>
+
+         <div class= "form-group">
+                <label for="contact-name" class="col-lg-4 control-label">Funding Agency: </label>
+                <div class= "col-lg-8">
+
+                  <select name="funding_agency_name" class="form-control">            
+                    <?php foreach ($funding_agency as $funds):?>
+                     <option name="funding_agency_name"><?php echo $funds->funding_agency_name;?></option>
+                    <?php endforeach; ?> 
+                  </select>
+
+                </div>
+            </div>
+ 
+
+               <div class "form-group">
+                <label for="contact-msg" class="col-lg-4 control-label"> Description: </label>
+                <div class= "col-lg-8">
+                  <textarea class="form-control" rows="8" name="commodity_description" placeholder="Add description"></textarea>                
+                </div>                
+              </div>  
+
+                      
+              <?php if(isset($successfull_save)){?>              
+              <div class="col-lg-12"><div class="alert alert-success"><div class="col-lg-3"></div><?=$successfull_save?></div></div>              
+              <?php }?>
+
+
+            </div> <!--end of the modal body-->
+
+            <div class="modal-footer">
+              <button class = "btn btn-primary" type="submit">Submit</button>
+              <a class="btn btn-danger" data-dismiss = "modal">Close</a>                  
+            </div>
+
+          </form>
 
         </div>
       </div>

@@ -21,8 +21,8 @@ function __construct(){
 
 public function show_agency_id() {
 	$id = $this->uri->segment(3);//get id from the url
-	$data['agencies'] = $this->agenciesmodel->show_students();
-	$data['single_agency'] = $this->agenciesmodel->show_student_id($id);
+	$data['agencies'] = $this->agenciesmodel->show_supply_chain_agencies();
+	$data['single_agency'] = $this->agenciesmodel->show_supply_chain_agency_id($id);
 
 
 	$this->load->view('supply_chain_agency_view',$data);
@@ -37,7 +37,7 @@ function update_agency_id1() {
 	'COMMENT' => $this->input->post('supply_agency_description'),
 
 	);
-	$updaterecord=$this->agenciesmodel->update_student_id1($id,$data);
+	$updaterecord=$this->agenciesmodel->update_supply_chain_agency_id1($id,$data);
 
 	     	$data['formupdate'] =  "";
 		if($updaterecord){
@@ -46,8 +46,8 @@ function update_agency_id1() {
 
 
 	$id = $this->uri->segment(3);//get id from the url
-	$data['agencies'] = $this->agenciesmodel->show_students();
-	$data['single_agency'] = $this->agenciesmodel->show_student_id($id);
+	$data['agencies'] = $this->agenciesmodel->show_supply_chain_agencies();
+	$data['single_agency'] = $this->agenciesmodel->show_supply_chain_agency_id($id);
 
 
 	$this->load->view('supply_chain_agency_view',$data);
@@ -204,7 +204,125 @@ public function updatePendingDeliveryid() {
 	$this->agenciesmodel->update_pending_delivery($id,$data);
 	$this->show_pending_stocks();
 	     
+ }
+
+/*****************************************************************************************************
+*                         Central Level Stocks Functions                                             *
+*                                                                                                    *
+*****************************************************************************************************/
+
+	 public function show_central_level_stock(){
+	 	$clid = $this->uri->segment(3);//get id from the url
+		$datacl['Central_level'] = $this->agenciesmodel->showCentralStock();
+		$datacl['single_Central_level'] = $this->agenciesmodel->showCentralStock_id($clid);
+		$datacl['commodities'] = $this->agenciesmodel->show_commodities();
+		$datacl['supply_chain_agencies'] = $this->agenciesmodel->show_supply_chain_agencies();
+		$datacl['fundingagencies'] = $this->agenciesmodel->show_fundingorgs();
+
+		$this->load->view('central_level_data-view',$datacl);
 	 }
+
+	 public function updatecentral_levelid(){
+
+	$supply_chain_agency= ($this->input->post('supply_chain_agency'));	 
+	$id= $this->input->post('central_level_stock_id');//central_level_stock_id
+	$f_agency_name= ($this->input->post('funding_agency'));
+
+	$data = array(
+	'commodity_id' => $this->agenciesmodel->get_commodity_id_with_the_given_name($this->input->post('commodity_name')),	
+	'pack_size' => $this->input->post('pack_size'),
+    'supply_chain_agency_id' =>$this->agenciesmodel->get_sagency_id_with_the_given_name($supply_chain_agency),
+    'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($f_agency_name),
+	'opening_balance' => $this->input->post('pending_deliveries'),
+	'receipts_from_suppliers'=>$this->input->post('receipts_from_suppliers'),
+	'closing_balance'=>$this->input->post('closing_balance'),
+	'total_issues'=>$this->input->post('total_issues'),
+	'earliest_expiry_date'=>$this->input->post('earliest_expiry_date'),
+	'quantity_expiring'=>$this->input->post('quantity_expiring'),
+	'report_date'=>$this->input->post('report_date'),
+	);
+	$this->agenciesmodel->update_central_data($id,$data);
+	$this->show_central_level_stock();
+
+
+
+	 }
+
+	 public function delete_central_level_data(){
+
+
+	 	$id= $this->input->post('central_level_stock_id');     
+		 $this->db->where('central_level_stock_id', $id);
+		     $deleterecord=$this->db->delete('central_level_soh');
+		     $data['status'] =  "";
+				if($deleterecord){
+					$data['status'] =  "Parameter deleted Successfully!..";
+				}
+			$this->show_central_level_stock();
+
+
+
+	 }
+
+
+/*****************************************************************************************************
+*                        Commodities Functions                                                       *
+*                                                                                                    *
+*****************************************************************************************************/
+
+		public function show_commodities_id() {
+		$id = $this->uri->segment(3);//get id from the url
+		$data['commodities'] = $this->agenciesmodel->show_commodities();
+		$data['single_commodity'] = $this->agenciesmodel->show_commodities_id($id);
+		$data['funding_agency'] = $this->agenciesmodel->show_fundingorgs();
+		
+
+		$this->load->view('commodities_view',$data);	
+
+		}
+		function update_commodity_id() {
+
+
+
+		$id= $this->input->post('commodity_id');
+
+		$fagencyid=$this->input->post('funding_agency_name');
+		$data = array(
+		'commodity_name' => $this->input->post('commodity_name'),
+		 // $data['funding_agencyid'] = $this->agenciesmodel->getfundingagencyid($dataf);
+		// 'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($dataf);
+		'pack_size' => $this->input->post('pack_size'),
+		'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($fagencyid),
+		'commodity_description' => $this->input->post('commodity_description'),
+
+
+
+		);
+		$this->agenciesmodel->update_commodity_id($id,$data);
+		$this->show_commodities_id();
+		     
+		 }
+
+		
+		function delete_commodity()   {
+
+			 $id= $this->input->post('commodities_id');     
+		     $this->db->where('commodity_id', $id);
+		     $deleterecord=$this->db->delete('commodities');
+		     		$data['status'] =  "";
+				if($deleterecord){
+					$data['status'] =  "Commodity deleted Successfully!..";
+				}
+			
+				$this->show_commodities_id();
+		    }
+
+	/*****************************************************************************************************
+    *                         Add                                                                        *
+    *                                                                                                    *
+    *****************************************************************************************************/
+
+
 }
 
 ?>

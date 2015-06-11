@@ -17,7 +17,7 @@
            <div class="alert alert-success"><?=$staus?></div>
            </div>
            <?php }?>
-<p>Click On the Agency you want to Edit</p>
+<p>Click On the Pending shipment you want to Edit</p>
 <!-- Fetching Names Of All Agencies From Database -->
 <ol>
 <?php foreach ($PSTOCKS as $pendingstocks): ?>

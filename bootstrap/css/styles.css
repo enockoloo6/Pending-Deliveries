@@ -1,5 +1,27 @@
 
 
+body
+{
+  
+  background-color: #d4d4d4;
+  /*margin-bottom: 80px;*/
+  
+}
+
+
+.page-header
+{
+  margin-top: 0;
+
+}
+.panel-body /**/
+{
+  padding-top: 0;
+
+}
+
+
+
 .position{
 
 	margin-left: 30%;
@@ -131,3 +153,16 @@ background:linear-gradient(red 5%,red 100%);
     z-index: 100000;
 }
 
+
+
+/*.navbar {
+    color: #FFFFF0;
+    background-color: #276696
+}
+
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #276696;
+    color: #F2F3F4;
+}
+*/

@@ -26,7 +26,7 @@ class AgencyHomeController extends CI_Controller
     *****************************************************************************************************/
 
 
-	public function save(){
+	public function save_supply_chain_agency(){
 		$agency_name= ($this->input->post('supply_agency_name'));
 		$person= ($this->input->post('contact_person'));
 		$contact= ($this->input->post('contact_phone'));
@@ -172,6 +172,90 @@ public function showcounties(){
 	}
 
 
+	/*****************************************************************************************************
+    *                         Central Level Stock Functions                                              *
+    *                                                                                                    *
+    *****************************************************************************************************/
 
+
+  public function saveCentralData(){
+
+  	$commodity_name=($this->input->post('commodity_name'));
+  	$supply_chain_agency= ($this->input->post('supply_chain_agency'));
+  	$f_agency_name= ($this->input->post('funding_agency'));
+  	  
+
+		$dataArray = array(
+        'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($f_agency_name),
+		'commodity_id' =>$this->agenciesmodel->get_commodity_id_with_the_given_name($commodity_name),//GET THE COMODITIES ID
+        'supply_chain_agency_id' =>$this->agenciesmodel->get_sagency_id_with_the_given_name($supply_chain_agency),
+		// 'commodity_name' => $this->input->post('commodity_name'),
+		'pack_size' => $this->input->post('pack_size'),
+		// 'supply_chain_agency' => $this->input->post('supply_chain_agency'),
+		'opening_balance' => $this->input->post('pending_deliveries'),
+		'receipts_from_suppliers'=>$this->input->post('receipts_from_suppliers'),
+		'closing_balance'=>$this->input->post('closing_balance'),
+		'total_issues'=>$this->input->post('total_issues'),
+		'earliest_expiry_date'=>$this->input->post('earliest_expiry_date'),
+		'quantity_expiring'=>$this->input->post('quantity_expiring'),
+		'report_date'=>$this->input->post('report_date'),
+		);
+
+     
+		
+
+		$psId = $this->agenciesmodel->addCentralStock($dataArray);
+		$data['message'] =  "";
+		if($psId){
+			$data['message'] =  "Central Stock Saved Successfully!..";
+		}
+
+
+		$query = $this->agenciesmodel->getCentralStock();
+
+		if($query){
+			$data['STATICPARAMS'] =  $query;
+		}
+		$this->load->view('deliveries_default_view', $data);
+    }
+
+
+	/*****************************************************************************************************
+    *                         Commodities Functions                                                      *
+    *                                                                                                    *
+    *****************************************************************************************************/
+	public function saveCommodity(){
+		$commodity_name= ($this->input->post('commodity_name'));
+		$pack_size= ($this->input->post('pack_size'));
+		$funding_agency= ($this->input->post('funding_agency_name'));
+		$commodity_comment= ($this->input->post('commodity_description'));
+
+		$commodity = array(
+			'commodity_name' => $commodity_name,
+			'pack_size' => $pack_size,			
+			'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($funding_agency),
+			'commodity_description' => $commodity_comment
+		);
+       
+		$commodityId = $this->agenciesmodel->addcommodity($commodity);
+		$data['successfull_save'] =  "";
+		if($commodityId){
+			$data['successfull_save'] =  "commodity Saved Successfully!..";
+		}
+
+
+		$query = $this->agenciesmodel->getCommodity();
+
+		if($query){
+			$data['COMMODITIES_DETAILS'] =  $query;
+		}
+		//$this->load->view('result.php', $data);
+		$this->load->view('deliveries_default_view', $data);
+	}
+
+    /*****************************************************************************************************
+    *                         End                                                                        *
+    *                                                                                                    *
+    *****************************************************************************************************/
 
 }

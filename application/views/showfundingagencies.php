@@ -2,11 +2,8 @@
 
 <?php require_once('header.php'); ?>
 
-
-<div id="container">
-<div id="wrapper">
 <h1>Edit Agencies Data</h1><hr/>
-<div id="menu">
+<div class="col-lg-6">
 
            <?php if(isset($status)){?>
            <div class="row">
@@ -15,17 +12,30 @@
            <?php }?>
 <p>Click On the Agency you want to Edit</p>
 <!-- Fetching Names Of All Agencies From Database -->
-<ol>
+  <table id= "entrydata"  class="table table-striped  table-hover">
+    <thead>
+       <tr class="bg-primary">
+        <th>#</th> 
+        <th>Name</th> 
+       </tr>
+    </thead>
+	<tbody>
+
+<?php $count=1; ?>	
 <?php foreach ($fundingagencies as $agency): ?>
+<tr>
+<td><?php echo $count; ?></td>	
+<td><a href="<?php echo base_url() . "index.php/update_ctrl/showFundingAgency/" . $agency->funding_agency_id; ?>"><?php echo $agency->funding_agency_name; ?></a></td>
+</tr>
+<?php $count++; endforeach; ?>
 
+ </tbody>
+ </table>
 
-	
-<li><a href="<?php echo base_url() . "index.php/update_ctrl/showFundingAgency/" . $agency->funding_agency_id; ?>"><?php echo $agency->funding_agency_name; ?></a></li>
-<?php endforeach; ?>
 <a href="#FundingAgencyRegistration" data-toggle="modal"><div class="btn btn-success"><h5>Add a Transaction</h5></div></a>
-</ol>
 </div>
-<div id="detail">
+
+<div class="col-lg-6">
 <!-- Fetching All Details of Selected agency From Database And Showing In a Form -->
 <?php foreach ($single_fundingagency as $agency): ?>
 <p>Edit Detail & Click Update Button</p>
@@ -52,12 +62,7 @@
 
 <?php endforeach; ?>
 
-
-
 </div>
-</div>
-</div>
-
 
 
 <?php require_once('footer.php'); ?>

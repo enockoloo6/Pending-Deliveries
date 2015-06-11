@@ -11,22 +11,37 @@
 
   
     <link href="<?= base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--link the html code to the bootstrap-->
-    <link href="<?= base_url();?>bootstrap/css/styles.css" rel="stylesheet" type="text/css">
+    
     <link rel="<?= base_url();?>stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
     <!-- DATEPICKER -->
 
-    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.css" rel="stylesheet">
-    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap.css" rel="stylesheet">
-    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/jquery-uienoc.css" rel="stylesheet">
+    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.css" rel="stylesheet">       
+    <link href="<?= base_url();?>bootstrap/css/styles.css" rel="stylesheet" type="text/css">
+   <!--  Javascript -->
+
+
+
+    <script src="<?= base_url();?>bootstrap/js/jquery.js"></script>
+    <script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url();?>bootstrap/js/bootstrap.js"></script> 
+    <script src="<?= base_url();?>bootstrap/js/custom.js"></script>
+   
+    <!-- load the datepicker -->
+    <script src="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.js"></script>
+
+        <!--DATATABLE-->
+    <link  href="<?= base_url();?>DataTables-1.10.7/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.js"></script>  
+    <!-- DataTables -->
+    <script type="text/javascript"  charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+    <!--DATA TABLE-->
+
+
+
     
-
-
-
-  </script>
-
-  <style>
-  .datepicker{z-index: 1151px, !important}
-  </style>
   
    
   </head>
@@ -60,7 +75,8 @@
 
             
                 <li><a href="<?= base_url();?>index.php/update_ctrl/show_agency_id" >Supply Chain Agencies</a></li>
-       
+
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_commodities_id">Commodities</a></li>       
                 <li><a href="#">Zones</a></li>
                 <li><a href="<?= base_url();?>index.php/update_ctrl/show_county_id">Counties</a></li>
                 <li><a href="<?= base_url();?>index.php/update_ctrl/showStaticParams">Static Parameters</a></li>
@@ -72,7 +88,9 @@
            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transactions<b class="caret"></b> </a>
               <ul class= "dropdown-menu">              
-                <li><a href="<?= base_url();?>index.php/update_ctrl/show_pending_stocks" >Add Transactions</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_pending_stocks" >Pending Shipments</a></li>
+                 <li><a href="<?= base_url();?>index.php/update_ctrl/show_central_level_stock">Current Stock</a></li>
+
                 <li><a href="#">View Transactions</a></li>
               </ul>
             </li>  
