@@ -76,8 +76,11 @@ function delete_agency()   {
 *                                                                                                    *
 *****************************************************************************************************/
 public function show_county_id() {
+	$set="";
 	$id = $this->uri->segment(3);//get id from the url
 	$data['counties'] = $this->agenciesmodel->show_counties();
+	if ($this->agenciesmodel->show_county_id($id)) {$set="set";}
+
 	$data['single_county'] = $this->agenciesmodel->show_county_id($id);
 	$data['zones'] = $this->agenciesmodel->getZone();//get zones
 
@@ -149,20 +152,32 @@ public function showStaticParams() {
 		$data3['staticParams'] = $this->agenciesmodel->showStaticParams();
 		$data3['single_staticparam'] = $this->agenciesmodel->show_staticparams_id($fid);
 
+		$data3['COMMODITY']=$this->agenciesmodel->show_commodities();
+
+
+
+
 		$this->load->view('showstaticparams',$data3);
 }
 
 
 function updateStaticParamsid() {
 	$id= $this->input->post('staticparams_id');
+
+	$commodity_name= $this->input->post('commodity_name');
+	$commodity_id=$this->agenciesmodel->get_commodity_id_with_the_given_name($commodity_name);
+
 	$data = array(
 	'period' => $this->input->post('period'),
-	'commodity_name' => $this->input->post('commodity_name'),
-	'pack_size' => $this->input->post('pack_size'),
+	'commodity_id'=>$commodity_id,
 	'projected_monthly_consumption' => $this->input->post('projected_monthly_consumption'),
 	'average_monthly_consumption'=>$this->input->post('average_monthly_consumption'),
 
 	);
+
+
+
+
 	$this->agenciesmodel->update_static_id1($id,$data);
 	$this->showStaticParams();
 	     
@@ -187,20 +202,33 @@ public function show_pending_stocks() {
 	$psid = $this->uri->segment(3);//get id from the url
 	$data2['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
 	$data2['single_PSTOCKS'] = $this->agenciesmodel->showPendingStock_id($psid);
+	$data2['COMMODITY']=$this->agenciesmodel->show_commodities();
+	$data2['FUNDING']=$this->agenciesmodel->show_fundingorgs();
 
 	$this->load->view('showpendingstock',$data2);
 }
 
 public function updatePendingDeliveryid() {
 	$id= $this->input->post('pendingstockid');
+
+	$commodity= $this->input->post('commodity_name');
+	//'pack_size' => $this->input->post('pack_size'),
+	$funding_agency_name = $this->input->post('funding_agency');
+		
+
+
+	$commodity_id=$this->agenciesmodel->showCommodityId($commodity);
+	$funding_agency_Id=$this->agenciesmodel->show_fundingOrgId($funding_agency_name);
+
+
 	$data = array(
-	'commodity_name' => $this->input->post('commodity_name'),
-	'pack_size' => $this->input->post('pack_size'),
-	'funding_agency' => $this->input->post('funding_agency'),
 	'pending_deliveries' => $this->input->post('pending_deliveries'),
 	'expected_date_delivery'=>$this->input->post('expected_date_delivery'),
 	'comments'=>$this->input->post('pddescription'),
+	'commodity_id'=>$commodity_id,
+	'funding_agency_id'=>$funding_agency_Id,
 	);
+
 	$this->agenciesmodel->update_pending_delivery($id,$data);
 	$this->show_pending_stocks();
 	     
@@ -231,7 +259,7 @@ public function updatePendingDeliveryid() {
 	$data = array(
 	'commodity_id' => $this->agenciesmodel->get_commodity_id_with_the_given_name($this->input->post('commodity_name')),	
 	'pack_size' => $this->input->post('pack_size'),
-    'supply_chain_agency_id' =>$this->agenciesmodel->get_sagency_id_with_the_given_name($supply_chain_agency),
+    'supply_agency_id' =>$this->agenciesmodel->get_sagency_id_with_the_given_name($supply_chain_agency),
     'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($f_agency_name),
 	'opening_balance' => $this->input->post('pending_deliveries'),
 	'receipts_from_suppliers'=>$this->input->post('receipts_from_suppliers'),

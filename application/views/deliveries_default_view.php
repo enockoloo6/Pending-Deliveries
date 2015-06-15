@@ -8,7 +8,7 @@
 
 
               
-     <div class= "col-lg-2"></div>
+
 
 
       <img src="<?= base_url();?>kenya.gif" USEMAP="#kenya" BORDER=0>
@@ -92,6 +92,42 @@
           </script>            
            <?php }?>
 
+
+         <?php if(isset($staticparams_message)){?>              
+
+          <script type="text/javascript"> 
+           $(document).ready(function(){
+           $('#StaticParameters').modal('show');
+           });
+          </script>            
+           <?php }?>
+                      
+
+
+
+         <div class= "col-lg-3">
+<!--                <div class="list-group">
+            <a href=""  class="list-group-item active">          
+          <h5 class="list-group-item-heading">STOCK MONITORING TOOL</h5>
+          <p class="list-group-item-text"></p>
+            </a>
+          </div>  -->     
+
+<!--       
+          <div class="list-group">
+            <a href=""  class="list-group-item">          
+          <h5 class="list-group-item-heading"></h5>
+          </a>
+          </div>
+
+          <div class="list-group">
+            <a href=""  class="list-group-item">          
+          <h5 class="list-group-item-heading"></h5>
+          </a>
+          </div>
+    -->
+     </div>
+
            
-           <?php require_once('footer.php'); ?>      
+           <?php require_once('footer.php'); ?>  
              

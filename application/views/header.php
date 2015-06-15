@@ -48,7 +48,7 @@
   <body>  
 
    
-   <div style= "background-color:#276696"  class="navbar navbar-inverse navbar-static-top">
+   <div style= "background-color:#276696"  class="navbar navbar-inverse navbar-fixed-top">
 
       <div class="container"><!--this contains the everything to be place in the navbar-->
         
@@ -58,6 +58,8 @@
           <span class="icon-bar"></span>   
 
         </button>
+
+        <a href="<?= base_url();?>"class="navbar-brand"><b ><div style= "color:white">MALARIA DRUGS STOCK MONITORING TOOL</div></b></a>
 
         <div class="collapse navbar-collapse" id="navHeaderCollapse">
 
@@ -122,10 +124,11 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <!--HEADER-->
-<!--               <div class="page-header"> 
-                
+              <div class="page-header"> 
+
+              <!-- <div class="col-lg-4"></div><h4 class="list-group-item-heading"><b><p>MALARIA DRUGS STOCK MONITORING TOOL</p></b></h4>                -->
         
-              </div> -->
+              </div> 
               <!-- BODY CONTAINER-->
 
 

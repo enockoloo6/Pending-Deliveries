@@ -104,34 +104,27 @@ public function showcounties(){
 	public function saveStaticParams(){
 		$prd= ($this->input->post('period'));
 		$cn= ($this->input->post('commodity_name'));
-		$ps= ($this->input->post('pack_size'));
+		//$ps= ($this->input->post('pack_size'));
 		$pmc= ($this->input->post('projected_monthly_consumption'));
 		$amc= ($this->input->post('average_monthly_consumption'));
 
-
-
+		$commodity_id=$this->agenciesmodel->get_commodity_id_with_the_given_name($cn);
+        
 		$staticparams = array(
 
 			'period'=>$prd,
-			'commodity_name'=>$cn,
-			'pack_size'=>$ps,
+			'commodity_id'=>$commodity_id,
+			//'pack_size'=>$ps,
 			'projected_monthly_consumption'=>$pmc,
 			'average_monthly_consumption'=>$amc
 			);
        
 		$psId = $this->agenciesmodel->addstaticparam($staticparams);
-		$data['message'] =  "";
+		$data['staticparams_message'] =  "";
 		if($psId){
-			$data['message'] =  "Agency Saved Successfully!..";
+			$data['staticparams_message'] =  "The Static Parameter was Saved Successfully!..";
 		}
 
-
-		$query = $this->agenciesmodel->getAgency();
-
-		if($query){
-			$data['STATICPARAMS'] =  $query;
-		}
-		//$this->load->view('result.php', $data);
 		$this->load->view('deliveries_default_view', $data);
 	}
 
@@ -147,10 +140,16 @@ public function showcounties(){
 		$expected_date_delivery= ($this->input->post('expected_date_delivery'));
 		$pddescription=($this->input->post('pddescription'));
 
+
+
+
+		$commodity_id=$this->agenciesmodel->showCommodityId($commodity_name);
+		$funding_agency_Id=$this->agenciesmodel->show_fundingOrgId($funding_agency);
+
 		$pendingStock = array(
-			'commodity_name'=>$commodity_name,
-			'pack_size'=>$pack_size,
-			'funding_agency'=>$funding_agency,
+			'commodity_id'=>$commodity_id,
+			//'pack_size'=>$pack_size,
+			'funding_agency_id'=>$funding_agency_Id,
 			'pending_deliveries'=>$pending_deliveries,
 			'comments'=>$pddescription,
 			'expected_date_delivery'=>$expected_date_delivery			

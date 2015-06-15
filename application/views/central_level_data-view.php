@@ -72,7 +72,7 @@
 </select>
 
 <label>Pack Size :</label>
-<input type="text" name="pack_size" value="<?php echo $central_level_data->pack_size; ?>">
+<input type="text" class="form-control" name="pack_size" value="<?php echo $central_level_data->pack_size; ?>">
 <label>Supply Agency :</label>
 
 

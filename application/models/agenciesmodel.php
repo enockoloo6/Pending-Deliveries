@@ -168,6 +168,7 @@ class agenciesmodel extends CI_Model
 	return $result;
 	}
 
+
     function addstaticparam($sp=NULL){	
     $this->db->insert('static_parameters', $sp);
     return $this->db->insert_id();						
@@ -177,6 +178,14 @@ class agenciesmodel extends CI_Model
     $this->db->where('staticparameterid', $id);
     $this->db->update('static_parameters', $data);
     }
+
+
+    function getStaticParams(){	
+	$this->db->select('*');
+	$this->db->from('static_parameters');				
+	$query = $this->db->get();		
+	return $query->result();			
+	}
 
 
 /*****************************************************************************************************

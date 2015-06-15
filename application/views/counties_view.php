@@ -49,8 +49,7 @@
 
 <form role="form" action="<?= base_url();?>index.php/update_ctrl/update_county_id1" method="post" enctype="multipart/form-data" autocomplete="on">
 <label>County Name:</label>
-<?php echo "<br />".$county->county_name."<br />" ;?>
-
+<input type="text" class="form-control" readonly="readonly" name="county_id" value="<?php echo $county->county_name; ?>">
 
 
 <label id="hide">County Id:</label>
@@ -59,10 +58,10 @@
 <label>Zone :</label>
           <select name="zone_name" class="form-control">
 
-          <!-- <option name="zone_name"><?php //echo $county->zone?></option>   -->
-          <?php foreach ($zones as $zone_name):?>
+          <option>--SELECT ZONE--</option>
+          <?php foreach ($zones as $zone_name):?>          
           <option name="zone_name" <?php if($zone_name->zone==$county->zone){echo"selected";} ?>><?php echo $zone_name->zone;?></option>
-          <?php endforeach; ?>          
+          <?php endforeach; ?>       
 
            </select>
 
@@ -71,7 +70,7 @@
 <input type="text" name="zone_name" value="<?php //echo $county->zone; ?>"> -->
 
 <label>Comment :</label>
-<input type="text" name="county_comment" value="<?php echo $county->comment; ?>">
+<input type="text" class="form-control" name="county_comment" value="<?php echo $county->comment; ?>">
 
 <input type="submit" id="submit" class="update" name="dsubmit" value="Update">
 

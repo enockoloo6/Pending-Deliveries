@@ -180,6 +180,9 @@
     </div>
 
     <!-------------------------------------------Pending Stock form-------------------------------------------------------->
+
+
+
 <div class= "modal fade" id="PendingStock" role"dialog">
       <div class= "modal-dialog">
         <div class= "modal-content">
@@ -219,8 +222,20 @@
                  <div class "form-group">
                 <label for="contact-msg" class="col-lg-5 control-label"> Funding Agency: </label>
                 <div class= "col-lg-7">
-                  <input type="text" class="form-control" name="funding_agency" placeholder="Funding Agrncy">
-                </div>                
+<!--                   <input type="text" class="form-control" name="funding_agency" placeholder="Funding Agrncy">
+ -->         <select name="funding_agency_name" class="form-control">
+          <?php foreach($FUNDING as $FA):?>
+
+          <option name="funding_agency_name"><?php echo $FA->funding_agency_name;?></option>
+          <?php endforeach; ?>    
+
+
+
+
+           </select>
+
+
+         </div>                
               </div>  
 
                 <div class "form-group">
@@ -235,8 +250,8 @@
                 <div class "form-group">
                 <label for="expected_date_delivery" class="col-lg-5 control-label"> Expected Delivery Date: </label>
                 <div class= "col-lg-7">
-                  <input id="expected_date_delivery" type="text" readonly="readonly" class="form-control clsDatePicker" name="expected_date_delivery" placeholder="Expected Delivery Date" <span class="input-group-addon" >
-                              
+                  <input id="expected_date_delivery" type="text" class="form-control clsDatePicker" name="expected_date_delivery" placeholder="Expected Delivery Date" <span class="input-group-addon" >
+                         <!--  readonly="readonly" -->     
                 </div>                
               </div>
 
@@ -283,8 +298,7 @@
     </div>
 
      <!-------------------------------------------Static Parameters Form---------------------------------------------------------------->
-
-    <div class= "modal fade" id="StaticParameters" role"dialog">
+<div class= "modal fade" id="StaticParameters" role"dialog">
       <div class= "modal-dialog">
         <div class= "modal-content">
           <form class= "form-horizontal"  name="StaticParams" action="<?= base_url();?>index.php/agencyhomecontroller/saveStaticParams" onsubmit="return validateStaticParams()" method="post" enctype="multipart/form-data" autocomplete="on">  
@@ -334,6 +348,12 @@
                               
                 </div>                
               </div>  
+
+                
+              <?php if(isset($staticparams_message)){?>              
+              <div class="col-lg-12"><div class="alert alert-success"><div class="col-lg-3"></div><?=$staticparams_message?></div></div>              
+              <?php }?>
+
 
                 </div> <!--end of the modal body-->
            
