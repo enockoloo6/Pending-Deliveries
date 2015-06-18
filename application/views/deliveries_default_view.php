@@ -63,6 +63,9 @@
 
        
               <!--KENYAN MAP-->
+
+
+
               <!--BODY-->
 
            <?php if(isset($message)){?>              
@@ -101,32 +104,27 @@
            });
           </script>            
            <?php }?>
+
+
+          <?php if(isset($pending_delivery_message)){?>              
+
+          <script type="text/javascript"> 
+           $(document).ready(function(){
+           $('#PendingStock').modal('show');
+           });
+          </script>            
+           <?php }?>
+
+           
                       
 
 
 
-         <div class= "col-lg-3">
-<!--                <div class="list-group">
-            <a href=""  class="list-group-item active">          
-          <h5 class="list-group-item-heading">STOCK MONITORING TOOL</h5>
-          <p class="list-group-item-text"></p>
-            </a>
-          </div>  -->     
-
-<!--       
-          <div class="list-group">
-            <a href=""  class="list-group-item">          
-          <h5 class="list-group-item-heading"></h5>
-          </a>
-          </div>
-
-          <div class="list-group">
-            <a href=""  class="list-group-item">          
-          <h5 class="list-group-item-heading"></h5>
-          </a>
-          </div>
-    -->
-     </div>
+         <div class= "col-lg-4">
+         <!-- Button trigger modal -->
+         <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
+         <!-- Modal -->
+         </div>
 
            
            <?php require_once('footer.php'); ?>  

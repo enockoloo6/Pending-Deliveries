@@ -10,38 +10,22 @@
     <title></title>
 
   
-    <link href="<?= base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet"><!--link the html code to the bootstrap-->
-    
+    <link href="<?= base_url();?>bootstrap/css/bootstrap.min.css" rel="stylesheet">     
     <link rel="<?= base_url();?>stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-    <!-- DATEPICKER -->
-
-    <link href="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.css" rel="stylesheet">       
     <link href="<?= base_url();?>bootstrap/css/styles.css" rel="stylesheet" type="text/css">
-   <!--  Javascript -->
 
-
-
-    <script src="<?= base_url();?>bootstrap/js/jquery.js"></script>
-    <script src="<?= base_url();?>bootstrap/js/bootstrap.min.js"></script>
-    <script src="<?= base_url();?>bootstrap/js/bootstrap.js"></script> 
-    <script src="<?= base_url();?>bootstrap/js/custom.js"></script>
-   
-    <!-- load the datepicker -->
-    <script src="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="<?= base_url();?>bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.js"></script>
-
-        <!--DATATABLE-->
-    <link  href="<?= base_url();?>DataTables-1.10.7/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
-    <!-- jQuery -->
+    <!-- DATEPICKER -->
+    <!-- <link href="<?= base_url();?>./extensions/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <link href="<?= base_url();?>./extensions/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!-- DATEPICKER -->
+ 
+  
+    <!--DATATABLE-->
+    <link  href="<?= base_url();?>DataTables-1.10.7/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css">    
     <script type="text/javascript" charset="utf8" src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.js"></script>  
-    <!-- DataTables -->
     <script type="text/javascript"  charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8"  src="<?= base_url();?>DataTables-1.10.7/media/js/jquery.dataTables.min.js"></script>
-    <!--DATA TABLE-->
-
-
-
-    
+    <!--DATA TABLE-->    
   
    
   </head>
@@ -55,13 +39,13 @@
         <button class= "navbar-toggle" data-toggle = "collapse" data-target = "#navHeaderCollapse">
           <span class="icon-bar"></span> 
           <span class="icon-bar"></span>  
-          <span class="icon-bar"></span>   
-
+          <span class="icon-bar"></span> 
         </button>
+
+        <div class="collapse navbar-collapse" id="navHeaderCollapse">
 
         <a href="<?= base_url();?>"class="navbar-brand"><b ><div style= "color:white">MALARIA DRUGS STOCK MONITORING TOOL</div></b></a>
 
-        <div class="collapse navbar-collapse" id="navHeaderCollapse">
 
           <ul class="nav navbar-nav navbar-right">
 
@@ -104,8 +88,9 @@
               <ul class= "dropdown-menu">              
                 <li><a href="#" >Central</a></li>
                 <li><a href="#">County</a></li>
-                <li><a href="#">Commodities</a></li>
-                <li><a href="#">Period</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/DisplayPendingShipments">Pending Commodities</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/pendingstocksReports">Commodities</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/commoditiesPerAgency">Commodities/Agency</a></li>
               </ul>
             </li> 
                

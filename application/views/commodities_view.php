@@ -33,7 +33,7 @@
   </tbody>
   </table>
  <a href="#CommodityRegistration" data-toggle="modal"><div class="btn btn-success"><h5>Add a new Commodity</h5></div></a>
-
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
 </div>
 <div class="col-lg-6">
 <!-- Fetching All Details of Selected agency From Database And Showing In a Form -->

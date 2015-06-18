@@ -318,5 +318,20 @@ class agenciesmodel extends CI_Model
 	}
 
 
+	/*****************************************************************************************************
+	*                                 REPORTS    FUNCTIONS                                               *
+	*                                                                                                    *
+	*****************************************************************************************************/
+
+	public function getPendingStockTotals(){
+	$this->db->select('*,SUM(pending_deliveries) AS PendingTotal');
+	$this->db->group_by('commodity_id');
+	$this->db->order_by('PendingTotal', 'desc'); 
+	$query=$this->db->get('central_level_pending_stock',10);
+	/*return $query->result();*/
+	return $query->result();
+
+  }
+
 }
 ?>

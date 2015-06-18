@@ -207,17 +207,26 @@
                <div class "form-group">
                 <label for="commodity-name" class="col-lg-5 control-label"> Commodity Name: </label>
                 <div class= "col-lg-7">
-                  <input type="text" class="form-control" name="commodity_name" placeholder="Commodity Name">
+<!--                   <input type="text" class="form-control" name="commodity_name" placeholder="Commodity Name"> -->
+
+              
+      <select name="commodity_name" class="form-control">
+       <?php foreach($COMMODITY as $COMM):?>
+          <option name="commodity_name"><?php echo $COMM->commodity_name;?></option>
+          <?php endforeach; ?>
+           </select>
+
+
                 </div>                
               </div>  
 
 
-                <div class "form-group">
+              <!--   <div class "form-group">
                 <label for="contact-msg" class="col-lg-5 control-label"> Pack Size: </label>
                 <div class= "col-lg-7">
                   <input type="text" class="form-control" name="pack_size" placeholder="Pack Size">
                 </div>                
-              </div>  
+              </div>   -->
 
                  <div class "form-group">
                 <label for="contact-msg" class="col-lg-5 control-label"> Funding Agency: </label>
@@ -251,26 +260,10 @@
                 <label for="expected_date_delivery" class="col-lg-5 control-label"> Expected Delivery Date: </label>
                 <div class= "col-lg-7">
                   <input id="expected_date_delivery" type="text" class="form-control clsDatePicker" name="expected_date_delivery" placeholder="Expected Delivery Date" <span class="input-group-addon" >
-                         <!--  readonly="readonly" -->     
+                         <!--  readonly="readonly" --> 
+
                 </div>                
               </div>
-
-
-
-
-
-<!--                     <label for="idTourDateDetails" class="col-lg-5 control-label">Tour Start Date:</label>
-                        <div class="form-group col-lg-7">
-                            <div class="input-group">
-                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
-
-                            </div>
-                        </div>
-                        <label class="col-lg-5 control-label">Alt Field:</label> 
-                        <div class= "col-lg-7">
-                        <input type="text" name="idTourDateDetailsHidden" id="idTourDateDetailsHidden">
-                        </div>
-        -->
 
 
                <div class "form-group">
@@ -278,7 +271,14 @@
                 <div class= "col-lg-8">
                   <textarea class="form-control" rows="8" name="pddescription" placeholder="Add description"></textarea>                
                 </div>                
-              </div>  
+              </div>
+
+
+               
+
+              <?php if(isset($pending_delivery_message)){?>              
+              <div class="col-lg-12"><div class="alert alert-success"><div class="col-lg-3"></div><?=$pending_delivery_message?></div></div>              
+              <?php }?> 
 
 
                 </div> <!--end of the modal body-->
@@ -305,18 +305,13 @@
            
             <div class= "modal-header"> 
               <h4 class= "position" >Adjust Static Parameters</h4> 
-              <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>X</b></div>      
+              <div class= "position_data_dismis_signs" data-dismiss = "modal"><b>&times;</b></div>      
                
             </div>   
 
             <div class= "modal-body">
 
-              <div class= "form-group">
-                <label for="contact-name" class="col-lg-4 control-label">Period: </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="period" placeholder="Period"> <!--the form-control gives the form some styling-->
-                </div>
-              </div>
+            
 
 
                <div class "form-group">
@@ -325,6 +320,16 @@
                   <input type="text" class="form-control" name="commodity_name" placeholder="Commodity Name">
                 </div>                
               </div>  
+
+
+
+               <label for="period" class="col-lg-4 control-label">Period: </label>
+                <div class= "input-group date form_date col-lg-8" data-date="" data-date-format="dd MM yyyy" data-link-field="period" data-link-format="yyyy-mm-dd">
+                  <input type="text" class="form-control" name="period" value="" readonly placeholder="Period"> 
+                    <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon "><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+      
 
 
                 <div class "form-group">
@@ -557,3 +562,81 @@
         </div>
       </div>
     </div>
+
+
+
+
+ <!-- --------------------------------------------demom demo demo demo demo---------------------------------- -->
+
+
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+               
+             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="idTourDateDetails">Tour Start Date:</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+
+                            </div>
+                        </div>Alt Field:
+                        <input type="text" name="idTourDateDetailsHidden" id="idTourDateDetailsHidden">
+                    </div>
+                </div>
+
+
+
+
+                        <form action="" class="form-horizontal"  role="form">       
+
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+            <div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+     
+    </form>
+
+
+
+
+</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->

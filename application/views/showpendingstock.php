@@ -42,37 +42,35 @@ if ($pendingstocks->commodity_id==$COMM->commodity_id){
 <!--<form method="post" action="<?php// base_url() . "index.php/update_ctrl/update_agency_id1"?>">-->
 <label id="hide">Id :</label>
 <input type="text" id="hide" name="pendingstockid" value="<?php echo $pendingstocks->pendingstocksId; ?>">
-<label>Commodity Name :</label>
-<input type="text" name="commodity_name" value="<?php /*echo $pendingstocks->commodity_name;*/ 
 
-
-foreach($COMMODITY as $COM):
-
-if ($pendingstocks->commodity_id==$COM->commodity_id){
-	echo $COM->commodity_name; 
-	}
-	endforeach;
-
-
-
-?>">
 <!-- <label>Pack Size :</label>
 <input type="text"  name="pack_size" value="<?php echo $pendingstocks->pack_size; ?>"> -->
+<label>Commodity Name :</label>
+
+       <select name="commodity_name" class="form-control">
+          <?php foreach($COMMODITY as $COM):?>
+
+          <option name="commodity_name" <?php if ($pendingstocks->commodity_id==$COM->commodity_id) {echo "Selected";      	
+          } ?> ><?php echo $COM->commodity_name;?></option>
+          <?php endforeach; ?> 
+       </select>
+
+
+
+
 <label>Funding Agency :</label>
-<input type="text"  name="funding_agency" value="<?php /*echo $pendingstocks->funding_agency;*/
+
+
+       <select name="funding_agency" class="form-control">
+          <?php foreach($FUNDING as $FA):?>
+
+          <option name="funding_agency" <?php if ($pendingstocks->funding_agency_id==$FA->funding_agency_id) {echo "Selected";      	
+          } ?> ><?php echo $FA->funding_agency_name;?></option>
+          <?php endforeach; ?> 
+       </select>
 
 
 
-foreach($FUNDING as $FUND):
-
-if ($pendingstocks->funding_agency_id==$FUND->funding_agency_id){
-	echo $FUND->funding_agency_name; 
-	}
-	endforeach;
-
-
-
- ?>">
 <label>Pending Deliveries :</label>
 <input type="text" name="pending_deliveries" value="<?php echo $pendingstocks->pending_deliveries; ?>">
 <label>Expected date of delivery :</label>
@@ -87,10 +85,10 @@ if ($pendingstocks->funding_agency_id==$FUND->funding_agency_id){
 
 </form>
 
-<form role="form" action="<?= base_url();?>index.php/update_ctrl/deleteFundingAgency" method="post" enctype="multipart/form-data" autocomplete="on">
+<form role="form" action="<?= base_url();?>index.php/update_ctrl/delete_pending_stock" method="post" enctype="multipart/form-data" autocomplete="on">
 <label id="hide">Id :</label>
 <input type="text" id="hide" name="pendingstockid" value="<?php echo $pendingstocks->pendingstocksId; ?>">
-<input type="submit" class="delete-button" id="submirt" name="dsubmit" value="Delete">
+<input type="submit" class="delete-button" id="delete" name="dsubmit" value="Delete">
 </form>
 
 <?php endforeach; ?>

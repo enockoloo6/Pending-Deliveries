@@ -143,8 +143,8 @@ public function showcounties(){
 
 
 
-		$commodity_id=$this->agenciesmodel->showCommodityId($commodity_name);
-		$funding_agency_Id=$this->agenciesmodel->show_fundingOrgId($funding_agency);
+		$commodity_id=$this->agenciesmodel->get_commodity_id_with_the_given_name($commodity_name);
+		$funding_agency_Id=$this->agenciesmodel->getfundingagencyid($funding_agency);
 
 		$pendingStock = array(
 			'commodity_id'=>$commodity_id,
@@ -156,9 +156,9 @@ public function showcounties(){
 			);
        
 		$psId = $this->agenciesmodel->addPendingStock($pendingStock);
-		$data['message'] =  "";
+		$data['pending_delivery_message'] =  "";
 		if($psId){
-			$data['message'] =  "Agency Saved Successfully!..";
+			$data['pending_delivery_message'] =  "The Pending Stock was saved successfully!..";
 		}
 
 

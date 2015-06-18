@@ -211,14 +211,15 @@ public function show_pending_stocks() {
 public function updatePendingDeliveryid() {
 	$id= $this->input->post('pendingstockid');
 
-	$commodity= $this->input->post('commodity_name');
+	$commodity_name= $this->input->post('commodity_name');
 	//'pack_size' => $this->input->post('pack_size'),
 	$funding_agency_name = $this->input->post('funding_agency');
 		
 
 
-	$commodity_id=$this->agenciesmodel->showCommodityId($commodity);
-	$funding_agency_Id=$this->agenciesmodel->show_fundingOrgId($funding_agency_name);
+	$commodity_id=$this->agenciesmodel->get_commodity_id_with_the_given_name($commodity_name);
+	$funding_agency_Id=$this->agenciesmodel->getfundingagencyid($funding_agency_name);
+
 
 
 	$data = array(
@@ -233,6 +234,24 @@ public function updatePendingDeliveryid() {
 	$this->show_pending_stocks();
 	     
  }
+
+
+
+ 	 public function delete_pending_stock(){
+
+
+	 	$id= $this->input->post('pendingstockid');     
+		 $this->db->where('pendingstocksId', $id);
+		     $deleterecord=$this->db->delete('central_level_pending_stock');
+		     $data['status'] =  "";
+				if($deleterecord){
+					$data['status'] =  "Parameter deleted Successfully!..";
+				}
+			$this->show_pending_stocks();
+
+
+
+	 }
 
 /*****************************************************************************************************
 *                         Central Level Stocks Functions                                             *
@@ -308,8 +327,8 @@ public function updatePendingDeliveryid() {
 		$this->load->view('commodities_view',$data);	
 
 		}
-		function update_commodity_id() {
 
+		function update_commodity_id() {
 
 
 		$id= $this->input->post('commodity_id');
@@ -345,12 +364,61 @@ public function updatePendingDeliveryid() {
 				$this->show_commodities_id();
 		    }
 
+
+	    /*****************************************************************************************************
+	    *                         Reports                                                                     *
+	    *                                                                                                    *
+	    *****************************************************************************************************/
+		function DisplayPendingShipments(){
+			$pendingtotals['pendingConsignments']=$this->agenciesmodel->getPendingStockTotals();
+			$pendingtotals['COMMODITY']=$this->agenciesmodel->show_commodities();
+
+
+
+			$this->load->view('REPORTpending_commodities_View', $pendingtotals);
+		}
+
+		
+	public function pendingstocksReports() {
+		$psid = $this->uri->segment(3);//get id from the url
+		$data2['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
+		$data2['single_PSTOCKS'] = $this->agenciesmodel->showPendingStock_id($psid);
+		$data2['COMMODITY']=$this->agenciesmodel->show_commodities();
+		$data2['FUNDING']=$this->agenciesmodel->show_fundingorgs();
+
+		$this->load->view('REPORTpendingshipments',$data2);
+	}
+
+
+	public function commoditiesPerAgency()
+	{
+		#$commodityperagency['perAgency']=$this->agenciesmodel->commodityAgency();
+		$commodityperagency['COMMODITY']=$this->agenciesmodel->show_commodities();
+		$commodityperagency['FUNDING']=$this->agenciesmodel->show_fundingorgs();
+		$commodityperagency['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
+		
+		$this->load->view('REPORTcommodities_per_View',$commodityperagency);
+		
+
+	}
 	/*****************************************************************************************************
-    *                         Add                                                                        *
-    *                                                                                                    *
-    *****************************************************************************************************/
+	*                                 ADD A FUNCTION HERE                                                *
+	*                                                                                                    *
+	*****************************************************************************************************/
 
 
+
+
+
+
+
+
+
+
+	/*****************************************************************************************************
+	*                                 eND OF ALL Functions                                              *
+	*                                                                                                    *
+	*****************************************************************************************************/
 }
 
 ?>
