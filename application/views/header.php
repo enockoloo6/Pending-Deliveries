@@ -103,10 +103,10 @@
     </div><!--this is the end of the top navbar-->
 
 <!-- BODY CONTAINER-->
-    <div class="container">
+    <div classs="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="panel panel-default">
+          <div class="panel panel-default" id="body">
             <div class="panel-body">
               <!--HEADER-->
               <div class="page-header"> 

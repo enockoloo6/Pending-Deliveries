@@ -4,9 +4,20 @@ body
 {
   
   background-color: #d4d4d4;
+    background-image: url('../images/bi.jpg');
   /*margin-bottom: 80px;*/
   
 }
+
+#body {
+    background-image: url('../images/bi.jpg');
+    background-color: #cccccc;
+} 
+
+#entrydata {
+    
+    background-color: white;
+} 
 
 
 ..page-header

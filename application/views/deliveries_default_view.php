@@ -7,11 +7,12 @@
               <!--KENYAN MAP-->
 
 
+
               
 
 
 
-      <img src="<?= base_url();?>kenya.gif" USEMAP="#kenya" BORDER=0>
+      <img src="<?= base_url();?>kenya3.gif" USEMAP="#kenya" BORDER=0>
         <map name="kenya">
           <area name="turkana" shape="poly" coords="8,70,35,38,102,9,107,10,117,4,116,11,127,14,124,22,127,34,140,41,140,34,145,38,155,36,167,56,166,140,163,148,172,156,169,165,181,175,193,186,204,214,217,231,214,239,196,281,194,287,185,292,195,302,193,320,198,334,195,343,174,322,145,281,118,266,109,233,99,201,89,207,82,215,70,200,59,182,48,158,35,137,42,124,41,116,32,109,23,105,20,96,11,95,15,89,7,71,7,69,7,69,7,69,6,68,21,51,23,53,23,53" href=""  alt="Turkana" title="Turkana">
           <area name="marsabit" shape="poly" coords="166,57,167,141,167,162,181,174,200,197,207,224,217,214,220,213,229,232,234,253,247,257,263,270,283,302,297,302,309,301,312,311,311,310,313,315,340,291,345,275,392,248,386,210,396,200,401,179,421,167,416,131,398,126,386,128,367,118,362,120,355,117,326,120,309,105,291,91,273,79,255,68,234,55,214,51,165,51,165,51" href=""  alt="Marsabit" title="Marsabit">
@@ -120,11 +121,27 @@
 
 
 
-         <div class= "col-lg-4">
+         <div class= "col-lg-3">
          <!-- Button trigger modal -->
          <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Launch demo modal</button>
          <!-- Modal -->
+
+
+          <div width='100%'>"       
+          <div class='list-group'>
+          <!-- <a  class='list-group-item active'>First Name &nbsp&nbsp Second Name &nbsp&nbsp&nbsp&nbsp Third Name &nbsp&nbsp&nbsp&nbsp Identity</a>" -->
+        
+           </div>
+           </div>     
+
+
+
+
          </div>
+
+
+
+
 
            
            <?php require_once('footer.php'); ?>  

@@ -4,13 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php require_once('header.php'); ?>
 
 	
- <table border="1" style="width:100%">
- 	<tr>Expected Stocks</tr><br>
- 	<tr>Expected Shipments Totals</tr>
- 	<tr>
-    <td>commodity</td>
-    <td>Totals</td>
+ <table border="1" style="width:100%" class="table table-striped">
+ 
+ 	<tr >
+     <tr><b>Expected Stocks</b><br>
+ 	   <b>Expected Shipments Totals</b></tr>
+
+  <thead>
+ 	<tr class="bg-primary">
+    <td><b>commodity</b></td>
+    <td><b>Totals</b></td>
   </tr>
+  </thead>
 
     <?php foreach ($pendingConsignments as $pending_totals): ?>
    <tr>

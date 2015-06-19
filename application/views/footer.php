@@ -24,6 +24,7 @@
     </html>
 
     
-  
+     <!-- <div class="jumbotron"  ></div> --> <!-- the jumbotrone-->
     </body>
+    
     </html>
