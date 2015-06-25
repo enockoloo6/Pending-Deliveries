@@ -75,6 +75,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transactions<b class="caret"></b> </a>
               <ul class= "dropdown-menu">              
                 <li><a href="<?= base_url();?>index.php/update_ctrl/show_pending_stocks" >Pending Shipments</a></li>
+                <li><a href="<?= base_url();?>index.php/update_ctrl/show_confirmed_stocks" >Confirmed Shipments</a></li>
+                
                  <li><a href="<?= base_url();?>index.php/update_ctrl/show_central_level_stock">Current Stock</a></li>
 
                 <li><a href="#">View Transactions</a></li>
@@ -103,7 +105,7 @@
     </div><!--this is the end of the top navbar-->
 
 <!-- BODY CONTAINER-->
-    <div classs="container">
+    <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <div class="panel panel-default" id="body">

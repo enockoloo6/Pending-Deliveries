@@ -208,6 +208,16 @@ public function show_pending_stocks() {
 	$this->load->view('showpendingstock',$data2);
 }
 
+public function show_confirmed_stocks() {
+	$psid = $this->uri->segment(3);
+	$data2['CSTOCKS'] = $this->agenciesmodel->showConfirmedStock();
+	$data2['single_PSTOCKS'] = $this->agenciesmodel->showPendingStock_id($psid);
+	$data2['COMMODITY']=$this->agenciesmodel->show_commodities();
+	$data2['FUNDING']=$this->agenciesmodel->show_fundingorgs();
+
+	$this->load->view('confirmed_stock_view',$data2);
+}
+
 public function updatePendingDeliveryid() {
 	$id= $this->input->post('pendingstockid');
 
@@ -236,8 +246,7 @@ public function updatePendingDeliveryid() {
  }
 
 
-
- 	 public function delete_pending_stock(){
+ public function delete_pending_stock(){
 
 
 	 	$id= $this->input->post('pendingstockid');     
@@ -250,6 +259,17 @@ public function updatePendingDeliveryid() {
 			$this->show_pending_stocks();
 
 
+
+	 }
+public function confirm_reception_of_pending_stock(){
+	 	$id= $this->input->post('pendingstockid');
+        $transaction_status = "received";
+	 		$data = array(
+			'transaction_status'=> $transaction_status,
+			);
+
+	 	$this->agenciesmodel->update_pending_delivery($id,$data);
+	 	$this->show_pending_stocks();
 
 	 }
 
@@ -317,61 +337,61 @@ public function updatePendingDeliveryid() {
 *                                                                                                    *
 *****************************************************************************************************/
 
-		public function show_commodities_id() {
-		$id = $this->uri->segment(3);//get id from the url
-		$data['commodities'] = $this->agenciesmodel->show_commodities();
-		$data['single_commodity'] = $this->agenciesmodel->show_commodities_id($id);
-		$data['funding_agency'] = $this->agenciesmodel->show_fundingorgs();
-		
+ public function show_commodities_id() {
+	$id = $this->uri->segment(3);//get id from the url
+	$data['commodities'] = $this->agenciesmodel->show_commodities();
+	$data['single_commodity'] = $this->agenciesmodel->show_commodities_id($id);
+	$data['funding_agency'] = $this->agenciesmodel->show_fundingorgs();
+	
 
-		$this->load->view('commodities_view',$data);	
+	$this->load->view('commodities_view',$data);	
 
-		}
+	}
 
-		function update_commodity_id() {
-
-
-		$id= $this->input->post('commodity_id');
-
-		$fagencyid=$this->input->post('funding_agency_name');
-		$data = array(
-		'commodity_name' => $this->input->post('commodity_name'),
-		 // $data['funding_agencyid'] = $this->agenciesmodel->getfundingagencyid($dataf);
-		// 'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($dataf);
-		'pack_size' => $this->input->post('pack_size'),
-		'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($fagencyid),
-		'commodity_description' => $this->input->post('commodity_description'),
+	function update_commodity_id() {
 
 
+	$id= $this->input->post('commodity_id');
 
-		);
-		$this->agenciesmodel->update_commodity_id($id,$data);
-		$this->show_commodities_id();
-		     
-		 }
+	$fagencyid=$this->input->post('funding_agency_name');
+	$data = array(
+	'commodity_name' => $this->input->post('commodity_name'),
+	 // $data['funding_agencyid'] = $this->agenciesmodel->getfundingagencyid($dataf);
+	// 'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($dataf);
+	'pack_size' => $this->input->post('pack_size'),
+	'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($fagencyid),
+	'commodity_description' => $this->input->post('commodity_description'),
 
-		
-		function delete_commodity()   {
 
-			 $id= $this->input->post('commodities_id');     
-		     $this->db->where('commodity_id', $id);
-		     $deleterecord=$this->db->delete('commodities');
-		     		$data['status'] =  "";
-				if($deleterecord){
-					$data['status'] =  "Commodity deleted Successfully!..";
-				}
-			
-				$this->show_commodities_id();
-		    }
+
+	);
+	$this->agenciesmodel->update_commodity_id($id,$data);
+	$this->show_commodities_id();
+	     
+	 }
+
+
+function delete_commodity()   {
+
+ $id= $this->input->post('commodities_id');     
+ $this->db->where('commodity_id', $id);
+ $deleterecord=$this->db->delete('commodities');
+ 		$data['status'] =  "";
+	if($deleterecord){
+		$data['status'] =  "Commodity deleted Successfully!..";
+	}
+
+	$this->show_commodities_id();
+	}
 
 
 	    /*****************************************************************************************************
 	    *                         Reports                                                                     *
 	    *                                                                                                    *
 	    *****************************************************************************************************/
-		function DisplayPendingShipments(){
-			$pendingtotals['pendingConsignments']=$this->agenciesmodel->getPendingStockTotals();
-			$pendingtotals['COMMODITY']=$this->agenciesmodel->show_commodities();
+function DisplayPendingShipments(){
+	$pendingtotals['pendingConsignments']=$this->agenciesmodel->getPendingStockTotals();
+	$pendingtotals['COMMODITY']=$this->agenciesmodel->show_commodities();
 
 
 
@@ -379,28 +399,27 @@ public function updatePendingDeliveryid() {
 		}
 
 		
-	public function pendingstocksReports() {
-		$psid = $this->uri->segment(3);//get id from the url
-		$data2['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
-		$data2['single_PSTOCKS'] = $this->agenciesmodel->showPendingStock_id($psid);
-		$data2['COMMODITY']=$this->agenciesmodel->show_commodities();
-		$data2['FUNDING']=$this->agenciesmodel->show_fundingorgs();
+public function pendingstocksReports() {
+	$psid = $this->uri->segment(3);//get id from the url
+	$data2['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
+	$data2['single_PSTOCKS'] = $this->agenciesmodel->showPendingStock_id($psid);
+	$data2['COMMODITY']=$this->agenciesmodel->show_commodities();
+	$data2['FUNDING']=$this->agenciesmodel->show_fundingorgs();
 
-		$this->load->view('REPORTpendingshipments',$data2);
-	}
+	$this->load->view('REPORTpendingshipments',$data2);
+}
 
-
-	public function commoditiesPerAgency()
-	{
-		#$commodityperagency['perAgency']=$this->agenciesmodel->commodityAgency();
-		$commodityperagency['COMMODITY']=$this->agenciesmodel->show_commodities();
-		$commodityperagency['FUNDING']=$this->agenciesmodel->show_fundingorgs();
-		$commodityperagency['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
+public function commoditiesPerAgency()
+  {
+	#$commodityperagency['perAgency']=$this->agenciesmodel->commodityAgency();
+	$commodityperagency['COMMODITY']=$this->agenciesmodel->show_commodities();
+	$commodityperagency['FUNDING']=$this->agenciesmodel->show_fundingorgs();
+	$commodityperagency['PSTOCKS'] = $this->agenciesmodel->showPendingStock();
+	
+	$this->load->view('REPORTcommodities_per_View',$commodityperagency);
 		
-		$this->load->view('REPORTcommodities_per_View',$commodityperagency);
-		
 
-	}
+}
 	/*****************************************************************************************************
 	*                                 ADD A FUNCTION HERE                                                *
 	*                                                                                                    *

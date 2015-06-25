@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php require_once('header.php'); ?>
 
 	
- <table border="1" style="width:100%" class="table table-striped">
+ <table id="entrydata" border="1" style="width:100%" class="table table-striped">
  
  	<tr >
      <tr><b>Expected Stocks</b><br>

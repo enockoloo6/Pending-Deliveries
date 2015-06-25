@@ -42,22 +42,19 @@ if ($static_dets->commodity_id==$COMM->commodity_id){
 <input type="text" id="hide" name="staticparams_id" value="<?php echo $static_dets->staticparameterid; ?>">
 <label>Period :</label>
 <input type="text" name="period" value="<?php echo $static_dets->period; ?>">
+
+
+
 <label>Commodity Name :</label>
-<input type="text" name="commodity_name" value="<?php /*echo $static_dets->commodity_name;*/
 
-foreach($COMMODITY as $COMM):
+       <select name="commodity_name" class="form-control">
+          <?php foreach($COMMODITY as $COMM):?>
 
-if ($static_dets->commodity_id==$COMM->commodity_id){
-	echo $COMM->commodity_name; 
-	}
-	endforeach;
+          <option name="commodity_name" <?php if ($static_dets->commodity_id==$COMM->commodity_id) {echo "Selected";      	
+          } ?> ><?php echo $COMM->commodity_name;?></option>
+          <?php endforeach; ?> 
+       </select>
 
-
- ?>">
-
-<!-- 
-<label>Pack Size :</label>
-<input type="text" name="pack_size" value="<?php //echo $static_dets->pack_size; ?>"> -->
 
 <label>Projected Monthly Consumption :</label>
 <input type="text" name="projected_monthly_consumption" value="<?php echo $static_dets->projected_monthly_consumption; ?>">

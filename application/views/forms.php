@@ -311,23 +311,28 @@
 
             <div class= "modal-body">
 
-            
 
-
-               <div class "form-group">
-                <label for="contact-msg" class="col-lg-4 control-label"> Commodity Name: </label>
-                <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="commodity_name" placeholder="Commodity Name">
-                </div>                
-              </div>  
-
-
+              <label for="contact-msg" class="col-lg-4 control-label"> Commodity Name: </label>
+              <div class= "col-lg-8">
+                <select name="commodity_name" class="form-control">
+                  <?php foreach($COMMODITY as $COMM):?>
+                  <option name="commodity_name"> <?php echo $COMM->commodity_name;?> </option>
+                  <?php endforeach; ?> 
+                 </select>
+              </div>
 
                <label for="period" class="col-lg-4 control-label">Period: </label>
-                <div class= "input-group date form_date col-lg-8" data-date="" data-date-format="dd MM yyyy" data-link-field="period" data-link-format="yyyy-mm-dd">
-                  <input type="text" class="form-control" name="period" value="" readonly placeholder="Period"> 
-                    <span class="input-group-addon "><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon "><span class="glyphicon glyphicon-calendar"></span></span>
+                  <div class= "input-group date form_date col-lg-8" data-date="" data-date-format="dd MM yyyy" data-link-field="period" data-link-format="yyyy-mm-dd">
+                  <input style="margin-left:15px;width:60%" type="text" class="form-control" name="period" value="" readonly placeholder="Period"> 
+                    <div style = "margin-left:-40px;margin-top:5px;margin-right:10px;">
+                      <span class="input-group-addon ">
+                        <span class="glyphicon glyphicon-remove" style = "height:20px"></span>
+                      </span>
+                      <span class="input-group-addon "style = "height:20px">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+                    </div>
+                  </input> 
                 </div>
       
 
@@ -335,7 +340,7 @@
                 <div class "form-group">
                 <label for="contact-msg" class="col-lg-4 control-label"> Pack Size: </label>
                 <div class= "col-lg-8">
-                  <input type="text" class="form-control" name="pack_size" placeholder="Pack Size">
+                <input type="text" class="form-control" name="pack_size" placeholder="Pack Size">
                 </div>                
               </div>  
 
@@ -523,7 +528,8 @@
                 </div>
               </div>
 
-         <div class= "form-group">
+
+<!--          <div class= "form-group">
                 <label for="contact-name" class="col-lg-4 control-label">Funding Agency: </label>
                 <div class= "col-lg-8">
 
@@ -534,7 +540,7 @@
                   </select>
 
                 </div>
-            </div>
+            </div> -->
  
 
                <div class "form-group">
@@ -579,6 +585,57 @@
 
             </div>
             <div class="modal-body">
+
+
+                  <div class="col-md-12">
+                    <div class="row">
+                        <label for="idTourDateDetails">Tour Start Date:</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+
+                            </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <label for="idTourDateDetails">Tour Start Date:</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+
+                            </div>
+                    </div>
+                </div>
+                </div>
+
+                 <div class="col-md-12">
+                    <div class="row">
+                        <label for="idTourDateDetails">Tour Start Date:</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="idTourDateDetails" id="idTourDateDetails" readonly="readonly" class="form-control clsDatePicker"> <span class="input-group-addon"><i id="calIconTourDateDetails" class="glyphicon glyphicon-th"></i></span>
+
+                            </div>
+                    </div>
+                </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="col-md-12">
                     <div class="row">
                         <label for="idTourDateDetails">Tour Start Date:</label>
@@ -600,7 +657,7 @@
             <div class="form-group">
                 <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
                 <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <input  size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>

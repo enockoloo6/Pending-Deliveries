@@ -4,14 +4,20 @@ body
 {
   
   background-color: #d4d4d4;
-    background-image: url('../images/bi.jpg');
+  background-image: url('../images/bi.jpg'); no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   /*margin-bottom: 80px;*/
   
 }
 
 #body {
-    background-image: url('../images/bi.jpg');
-    background-color: #cccccc;
+    /*background-image: url("../images/bi.jpg");*/
+    /*background-color: #cccccc;*/
+    background-color: #eee;
+
 } 
 
 #entrydata {
@@ -169,6 +175,14 @@ background:linear-gradient(red 5%,red 100%);
 /*.navbar {
     color: #FFFFF0;
     background-color: #276696
+}*/
+
+#blink{
+background: url("../images/kenya4.gif");
+width: 16px;
+height: 16px;
+border: none;
+display:inline-block;
 }
 
 

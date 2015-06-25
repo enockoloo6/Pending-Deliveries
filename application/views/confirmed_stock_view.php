@@ -9,7 +9,7 @@
 
 <div id="container">
 <div id="wrapper">
-<h1>Pending Stock</h1><hr/>
+<h1>Confirmed Stock</h1><hr/>
 <div id="menu">
 
            <?php if(isset($status)){?>
@@ -17,10 +17,10 @@
            <div class="alert alert-success"><?=$staus?></div>
            </div>
            <?php }?>
-<p>click to edit item</p>
+<p>click to edit stock</p>
 <!-- Fetching Names Of All Agencies From Database -->
 <ol>
-<?php foreach ($PSTOCKS as $pendingstocks): ?>
+<?php foreach ($CSTOCKS as $pendingstocks): ?>
 <li><a href="<?php echo base_url() . "index.php/update_ctrl/show_pending_stocks/" . $pendingstocks->pendingstocksId; ?>"><?php 
 foreach($COMMODITY as $COMM):
 
@@ -28,10 +28,11 @@ if ($pendingstocks->commodity_id==$COMM->commodity_id){
 	echo $COMM->commodity_name; 
 	}
 	endforeach; ?></a></li>
+
 <?php endforeach; ?>
-<a href="#PendingStock" data-toggle="modal"><div class="btn btn-success"><h5>Add a new Transaction</h5></div></a>
 </ol>
 </div>
+
 <div id="detail">
 <!-- Fetching All Details of Selected agency From Database And Showing In a Form -->
 <?php foreach ($single_PSTOCKS as $pendingstocks): ?>
@@ -79,19 +80,12 @@ if ($pendingstocks->commodity_id==$COMM->commodity_id){
 <input type="text" name="pddescription" value="<?php echo $pendingstocks->comments; ?>">
 
 <input type="submit" id="submit" name="dsubmit" value="Update">
-
-
 </form>
+
 <form role="form" action="<?= base_url();?>index.php/update_ctrl/delete_pending_stock" method="post" enctype="multipart/form-data" autocomplete="on">
 <label id="hide">Id :</label>
 <input type="text" id="hide" name="pendingstockid" value="<?php echo $pendingstocks->pendingstocksId; ?>">
 <input type="submit" class="delete-button" id="delete" name="dsubmit" value="Delete">
-</form>
-
-<form role="form" action="<?= base_url();?>index.php/update_ctrl/confirm_reception_of_pending_stock" method="post" enctype="multipart/form-data" autocomplete="on">
-<label id="hide">Id :</label>
-<input type="text" id="hide" name="pendingstockid" value="<?php echo $pendingstocks->pendingstocksId; ?>">
-<button type="submit" class="btn btn-default">Confirm</button>
 </form>
 
 <?php endforeach; ?>

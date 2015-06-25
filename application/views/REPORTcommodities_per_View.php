@@ -3,10 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  require_once('header.php'); ?>
 
 
- <table border="1" class="table table-striped">
+ <table id="entrydata" border="1" class="table table-striped">
+
+<thead>
 <tr class="bg-primary">
-<b>Supporting Agency Totals</b>
+<th><b>Supporting Agency Totals</b></th>
+<th><b></b></th>
 </tr>
+</thead>
+
 <?php foreach($COMMODITY as $COMM):?>
   <tr>
     <td width="50%">

@@ -226,13 +226,13 @@ public function showcounties(){
 	public function saveCommodity(){
 		$commodity_name= ($this->input->post('commodity_name'));
 		$pack_size= ($this->input->post('pack_size'));
-		$funding_agency= ($this->input->post('funding_agency_name'));
+		//$funding_agency= ($this->input->post('funding_agency_name'));
 		$commodity_comment= ($this->input->post('commodity_description'));
 
 		$commodity = array(
 			'commodity_name' => $commodity_name,
 			'pack_size' => $pack_size,			
-			'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($funding_agency),
+			//'funding_agency_id' => $this->agenciesmodel->getfundingagencyid($funding_agency),
 			'commodity_description' => $commodity_comment
 		);
        
@@ -242,13 +242,11 @@ public function showcounties(){
 			$data['successfull_save'] =  "commodity Saved Successfully!..";
 		}
 
-
 		$query = $this->agenciesmodel->getCommodity();
 
 		if($query){
 			$data['COMMODITIES_DETAILS'] =  $query;
 		}
-		//$this->load->view('result.php', $data);
 		$this->load->view('deliveries_default_view', $data);
 	}
 

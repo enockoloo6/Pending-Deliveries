@@ -193,12 +193,30 @@ class agenciesmodel extends CI_Model
 *                                                                                                    *
 *****************************************************************************************************/
 
-	function showPendingStock(){
-	$query = $this->db->get('central_level_pending_stock');
+    function showPendingStock(){
+	// $query = $this->db->get('central_level_pending_stock');
+	// $query_result = $query->result();
+	// return $query_result;
+    $transaction_state = "pending";
+	$this->db->select('*');
+	$this->db->from('central_level_pending_stock');	
+	$this->db->where('transaction_status', $transaction_state);
+	$query = $this->db->get();
 	$query_result = $query->result();
 	return $query_result;
 	}
-	function showPendingStock_id($psdata){
+    function showConfirmedStock(){
+	
+    $transaction_state = "received";
+	$this->db->select('*');
+	$this->db->from('central_level_pending_stock');	
+	$this->db->where('transaction_status', $transaction_state);
+	$query = $this->db->get();
+	$query_result = $query->result();
+	return $query_result;
+	}	
+
+    function showPendingStock_id($psdata){
 	$this->db->select('*');
 	$this->db->from('central_level_pending_stock');
 	$this->db->where('pendingstocksId', $psdata);
@@ -208,18 +226,18 @@ class agenciesmodel extends CI_Model
 	}
 
 
-	function update_pending_delivery($psid,$pendingdata){
+    function update_pending_delivery($psid,$pendingdata){
 	$this->db->where('pendingstocksId', $psid);
 	$this->db->update('central_level_pending_stock', $pendingdata);
 	}
 
-	function addPendingStock($pending=NULL){	
+    function addPendingStock($pending=NULL){	
 	$this->db->insert('central_level_pending_stock', $pending);
 	return $this->db->insert_id();	
 	}					
 
 
-	function getPendingStock(){	
+    function getPendingStock(){	
 	$this->db->select('*');
 	$this->db->from('central_level_pending_stock');				
 	$query = $this->db->get();		
@@ -230,12 +248,12 @@ class agenciesmodel extends CI_Model
 	*                        Central level Stock Functions                                               *
 	*                                                                                                    *
 	*****************************************************************************************************/
-		function update_central_data($cdid,$cdData){
+    function update_central_data($cdid,$cdData){
 	$this->db->where('central_level_stock_id', $cdid);
 	$this->db->update('central_level_soh', $cdData);
 	}
 
-	function addCentralStock($central_data=NULL){	
+    function addCentralStock($central_data=NULL){	
 	$this->db->insert('central_level_soh', $central_data);
 	return $this->db->insert_id();						
 	}
